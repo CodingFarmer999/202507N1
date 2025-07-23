@@ -5,6 +5,9 @@ public class Toyota /** extends ToyotaEngine */ {
 	// private ToyotaEngine engine;
 	private Engine engine;
 	
+	public Toyota() {
+	}
+	
 	public Toyota(Engine engine) {
 		this.engine = engine;
 	}
