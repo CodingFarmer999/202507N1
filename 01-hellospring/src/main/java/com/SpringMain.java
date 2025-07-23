@@ -16,6 +16,7 @@ public class SpringMain {
 		 
 		 Toyota toyota = (Toyota)ctx.getBean("toyota1");
 		 toyota.move();
+		 System.out.println(toyota);
 
 	}
 

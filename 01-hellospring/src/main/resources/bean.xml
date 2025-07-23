@@ -6,6 +6,7 @@
 
 
 	<bean id="toyota1" class="com.model.Toyota">
+		<constructor-arg value="7500000"></constructor-arg>
 		<constructor-arg ref="toyotaEngine"></constructor-arg>
 	</bean>
 	
