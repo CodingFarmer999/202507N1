@@ -2,9 +2,10 @@ package com.model;
 
 public class Toyota /** extends ToyotaEngine */ {
 
-	private ToyotaEngine engine;
+	// private ToyotaEngine engine;
+	private Engine engine;
 	
-	public Toyota(ToyotaEngine engine) {
+	public Toyota(Engine engine) {
 		this.engine = engine;
 	}
 	
