@@ -11,6 +11,7 @@ public class Kia {
 	@Autowired
 	private Engine engine;
 
+	// @Autowired
 	public Kia(Engine engine) {
 		super();
 		this.engine = engine;
@@ -20,6 +21,7 @@ public class Kia {
 		return engine;
 	}
 
+	// @Autowired
 	public void setEngine(Engine engine) {
 		this.engine = engine;
 	}
