@@ -1,17 +1,21 @@
 package com.component;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.model.Engine;
 
 @Component
+@Scope("prototype")
 public class Kia {
 
-	@Autowired
+//	@Autowired
+	@Qualifier(value = "toyotaEngine")
 	private Engine engine;
 
-	// @Autowired
+	@Autowired
 	public Kia(Engine engine) {
 		super();
 		this.engine = engine;

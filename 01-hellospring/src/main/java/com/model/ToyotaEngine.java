@@ -2,7 +2,7 @@ package com.model;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("toyotaEngine")
 public class ToyotaEngine implements Engine {
 
 	public void start() {

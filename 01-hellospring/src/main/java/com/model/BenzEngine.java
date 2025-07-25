@@ -1,5 +1,10 @@
 package com.model;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
+// @Component("benzEngine")
+// @Primary
 public class BenzEngine implements Engine {
 
 	@Override
