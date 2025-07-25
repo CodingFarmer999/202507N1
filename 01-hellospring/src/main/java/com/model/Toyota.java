@@ -1,5 +1,8 @@
 package com.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Toyota /** extends ToyotaEngine */ {
 
 	private Integer price;
