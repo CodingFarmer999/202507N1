@@ -15,6 +15,8 @@
 		<property name="engine" ref="toyotaEngine"></property>
 	</bean>
 	
+	<bean id="toyota3" class="com.model.Toyota" autowire="byType"></bean>
+	
 	<bean id="toyotaEngine" class="com.model.BenzEngine"></bean>
 
 </beans>
