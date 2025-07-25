@@ -19,6 +19,24 @@ public class Toyota /** extends ToyotaEngine */ {
 		this.engine = engine;
 	}
 	
+	
+	
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public Engine getEngine() {
+		return engine;
+	}
+
+	public void setEngine(Engine engine) {
+		this.engine = engine;
+	}
+
 	public void move() {
 		// ToyotaEngine engine = new ToyotaEngine();
 		// engine.start();
