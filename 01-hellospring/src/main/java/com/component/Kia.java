@@ -11,12 +11,12 @@ import com.model.Engine;
 @Scope("prototype")
 public class Kia {
 
-//	@Autowired
-	@Qualifier(value = "toyotaEngine")
+	// @Autowired
+	// @Qualifier(value = "benzEngine")
 	private Engine engine;
 
 	@Autowired
-	public Kia(Engine engine) {
+	public Kia(@Qualifier(value = "benzEngine") Engine engine) {
 		super();
 		this.engine = engine;
 	}

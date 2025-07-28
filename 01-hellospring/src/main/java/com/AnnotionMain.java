@@ -1,7 +1,5 @@
 package com;
 
-import java.sql.Connection;
-
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.component.Kia;
@@ -18,7 +16,7 @@ public class AnnotionMain {
 			
 			
 			Kia kia = ctx.getBean(Kia.class);
-			System.out.println(kia);
+			System.out.println("KIA: " + kia.getEngine());
 			
 			Kia kia2 = ctx.getBean(Kia.class);
 			System.out.println(kia2);

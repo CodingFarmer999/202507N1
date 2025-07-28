@@ -17,7 +17,7 @@
 	
 	<bean id="toyota3" class="com.model.Toyota" autowire="byType"></bean>
 	
-	<bean id="toyotaEngine" class="com.model.BenzEngine" primary="true"></bean>
+	<bean id="toyotaEngine" class="com.model.BenzEngine" ></bean>
 
-	<bean id="engine" class="com.model.ToyotaEngine" ></bean>
+	<bean id="engine" class="com.model.ToyotaEngine" primary="true"></bean>
 </beans>
