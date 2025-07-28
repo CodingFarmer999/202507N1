@@ -10,6 +10,12 @@ public class UserController {
 	@RequestMapping("/login")
 	public String login() {
 		// "/WEB-INF/views/login.jsp" 
-		return "login";
+		
+		if (false) {
+			return "loginSuccess";
+		} else {
+			return "loginFail";
+		}
+		
 	}
 }
