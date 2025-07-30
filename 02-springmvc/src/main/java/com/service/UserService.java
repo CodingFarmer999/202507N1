@@ -16,7 +16,12 @@ public class UserService {
 		// 呼叫 Dao/Repository
 		
 		UserEntity user = userDao.findByUsernameAndPassword(username, password);
-		return user != null;
+		if (user != null) {
+			return true;
+		} else {
+			return false;
+		}
+		// return user != null;
 	}
 	
 }
