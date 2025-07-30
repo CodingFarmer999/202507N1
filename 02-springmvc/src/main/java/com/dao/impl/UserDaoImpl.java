@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +41,15 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void addUser(UserEntity userEnity) {
 
-		Session session1 = connectionService.getSession();
+		Session session = connectionService.getSession();
 		
+		Transaction transaction = session.beginTransaction();
+		
+		session.persist(userEnity);
+		
+		transaction.commit();
+		
+		session.close();
 	}
 
 }
