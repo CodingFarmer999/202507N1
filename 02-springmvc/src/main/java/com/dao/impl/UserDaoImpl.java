@@ -52,4 +52,36 @@ public class UserDaoImpl implements UserDao {
 		session.close();
 	}
 
+	@Override
+	public void updateUser(UserEntity userEnity) {
+	    //  Try With Resource
+	    try (Session session = connectionService.getSession();) {
+			// 開啟交易/事務
+			Transaction transaction = session.beginTransaction();
+			
+			// Hibernate 6.0 以上
+			session.merge(userEnity);
+
+			// 提交
+			transaction.commit();
+	    }
+		
+	}
+
+	@Override
+	public void delUser(UserEntity userEnity) {
+	    //  Try With Resource
+	    try (Session session = connectionService.getSession();) {
+			// 開啟交易/事務
+			Transaction transaction = session.beginTransaction();
+			
+			// Hibernate 6.0 以上
+			session.remove(userEnity);
+
+			// 提交
+			transaction.commit();
+	    }
+		
+	}
+
 }
