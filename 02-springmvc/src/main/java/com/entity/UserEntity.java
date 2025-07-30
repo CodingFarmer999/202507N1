@@ -2,11 +2,16 @@ package com.entity;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "user")
 public class UserEntity {
 
+	@Id
 	private Integer id;
 	
 	private String username;
@@ -15,6 +20,7 @@ public class UserEntity {
 	
 	private String email;
 	
+	@Column(name = "birth_day")
 	private Date birthDay;
 
 	public Integer getId() {
