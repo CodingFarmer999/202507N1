@@ -24,4 +24,13 @@ public class UserService {
 		// return user != null;
 	}
 	
+	public void addUser(String username, String password) {
+		UserEntity entity = new UserEntity();
+		entity.setUsername(username);
+		entity.setPassword(password);
+		
+		userDao.addUser(entity);
+		
+	}
+	
 }
