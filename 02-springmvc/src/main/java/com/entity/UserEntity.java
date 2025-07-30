@@ -1,5 +1,7 @@
 package com.entity;
 
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 
 @Entity
@@ -13,7 +15,7 @@ public class UserEntity {
 	
 	private String email;
 	
-	private String birthDay;
+	private Date birthDay;
 
 	public Integer getId() {
 		return id;
@@ -47,11 +49,11 @@ public class UserEntity {
 		this.email = email;
 	}
 
-	public String getBirthDay() {
+	public Date getBirthDay() {
 		return birthDay;
 	}
 
-	public void setBirthDay(String birthDay) {
+	public void setBirthDay(Date birthDay) {
 		this.birthDay = birthDay;
 	}
 
