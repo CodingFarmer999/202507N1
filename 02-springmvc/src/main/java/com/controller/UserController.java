@@ -20,7 +20,7 @@ public class UserController {
 		
 		System.out.println(username);
 		System.out.println(password);
-		if ("aaa".equals(username) && "111".equals(password)) {
+		if (userService.checkLogin(username, password)) {
 			return "loginSuccess";
 		} else {
 			return "loginFail";
