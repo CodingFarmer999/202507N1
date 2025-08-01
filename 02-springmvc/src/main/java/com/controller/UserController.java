@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,7 +42,6 @@ public class UserController {
 	public String register(@RequestParam("username") String username, @RequestParam("password") String password) {
 		
 		userService.addUser(username, password);
-		// TODO:
 		return "registerSuccess";
 	}
 	
@@ -55,5 +55,12 @@ public class UserController {
 	public String userList2(HttpServletRequest req) {
 		//req.setAttribute("userList", userList);
 		return "";
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String deleteUser(@PathVariable("id") Long id) {
+		System.out.println("@PathVariable id: " + id);
+		
+		return "userList";
 	}
 }

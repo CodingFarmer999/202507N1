@@ -44,4 +44,13 @@ public class UserService {
 		return userList;
 	}
 	
+	
+	public void deleteUserById(Long id) {
+		// 透過ID 找到 UserEntity
+		UserEntity entity = null;
+		
+		userDao.delUser(entity);
+		
+	}
+	
 }
