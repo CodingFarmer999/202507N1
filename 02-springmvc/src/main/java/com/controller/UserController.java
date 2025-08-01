@@ -36,6 +36,6 @@ public class UserController {
 		
 		userService.addUser(username, password);
 		// TODO:
-		return "loginSuccess";
+		return "registerSuccess";
 	}
 }

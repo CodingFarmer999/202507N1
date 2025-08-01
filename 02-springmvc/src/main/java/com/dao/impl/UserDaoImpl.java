@@ -84,4 +84,23 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 
+	@Override
+	public List<UserEntity> findAll() {
+		try (Session session = connectionService.getSession();) {
+//		    String sql = "select u from UserEntity u";
+//		    Query<UserEntity> query = session.createQuery(sql, UserEntity.class);
+		    
+		    String sql = "select * from user";
+		    Query<UserEntity> query = session.createNativeQuery(sql, UserEntity.class);
+		    List<UserEntity> userList = query.getResultList();
+			return userList;
+		}
+	}
+
+	@Override
+	public UserEntity findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
