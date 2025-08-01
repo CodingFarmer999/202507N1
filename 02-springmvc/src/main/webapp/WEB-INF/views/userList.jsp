@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>使用者列表</h1>
 
-<h1>登入成功</h1>
-<a href="toUserList">使用者列表</a>
+<a href="index.jsp">回首頁</a>
 </body>
 </html>

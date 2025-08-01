@@ -1,5 +1,7 @@
 package com.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,15 @@ public class UserService {
 		
 		userDao.addUser(entity);
 		
+	}
+	
+	public List<UserEntity> findAllUser() {
+		List<UserEntity> userList = userDao.findAll();
+		
+		// 如果有需要轉換物件，在這裡做
+		
+		
+		return userList;
 	}
 	
 }

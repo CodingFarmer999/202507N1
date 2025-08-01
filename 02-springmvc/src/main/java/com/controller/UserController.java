@@ -1,13 +1,19 @@
 package com.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.entity.UserEntity;
 import com.service.UserService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 // @Component
 @Controller
@@ -37,5 +43,17 @@ public class UserController {
 		userService.addUser(username, password);
 		// TODO:
 		return "registerSuccess";
+	}
+	
+	@GetMapping("/toUserList")
+	public String userList(Model model) {
+		List<UserEntity> userList = userService.findAllUser();
+		model.addAttribute("userList", userList);
+		return "userList";
+	}
+	
+	public String userList2(HttpServletRequest req) {
+		//req.setAttribute("userList", userList);
+		return "";
 	}
 }
