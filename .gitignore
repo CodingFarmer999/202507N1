@@ -23,3 +23,7 @@
 hs_err_pid*
 replay_pid*
 /.metadata/
+Servers/
+02-springmvc/target/
+02-springmvc/.settings/
+/target/
