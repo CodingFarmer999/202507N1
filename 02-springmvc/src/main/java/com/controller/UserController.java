@@ -80,7 +80,7 @@ public class UserController {
 	public String updateUser(UserVo user) {
 		System.out.println("UserVo: " + user);
 		// 更新資料
-		
+		userService.upateUser(user);
 		
 		return "redirect:/toUserList";
 		
