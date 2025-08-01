@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.dao.UserDao;
 import com.entity.UserEntity;
+import com.vo.UserVo;
 
 @Service
 public class UserService {
@@ -51,6 +52,19 @@ public class UserService {
 		
 		userDao.delUser(entity);
 		
+	}
+	
+	public UserVo findUserById(Long id) {
+		// 透過ID 找到 UserEntity
+		UserEntity entity = userDao.findById(id);
+
+		UserVo vo = new UserVo();
+		vo.setUsername(entity.getUsername());
+		vo.setPassword(entity.getPassword());
+		vo.setEmail(entity.getEmail());
+		vo.setBirthDay(entity.getBirthDay());
+		
+		return vo;
 	}
 	
 }

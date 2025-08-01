@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.entity.UserEntity;
 import com.service.UserService;
+import com.vo.UserVo;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -64,5 +65,14 @@ public class UserController {
 		// userList
 		// redirect:/toUserList
 		return "redirect:/toUserList";
+	}
+	
+	@GetMapping("/toUpdate/{id}")
+	public String toUpdatePage(@PathVariable("id") Long id, Model model) {
+		
+		// 透過ID 找到 USER
+		UserVo vo = userService.findUserById(id);
+		model.addAttribute("user", vo);
+		return "updateUser";
 	}
 }
