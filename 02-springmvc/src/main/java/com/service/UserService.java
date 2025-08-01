@@ -1,5 +1,8 @@
 package com.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,9 +65,37 @@ public class UserService {
 		vo.setUsername(entity.getUsername());
 		vo.setPassword(entity.getPassword());
 		vo.setEmail(entity.getEmail());
-		vo.setBirthDay(entity.getBirthDay());
+		if (entity.getBirthDay() != null) {
+			vo.setBirthDay(parseDateToString(entity.getBirthDay()));			
+		} else {
+			vo.setBirthDay("");
+		}
 		
 		return vo;
+	}
+	
+	private Date parseDate(String dateStr) {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = formatter.parse(dateStr);
+			System.out.println("Parsed Date: " + date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return date;
+	}
+	
+	/**
+	 * 日期轉換字串
+	 * @param date
+	 * @return
+	 */
+	private String parseDateToString(Date date) {
+	     // 定義日期格式
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        // 將 Date 物件轉換為 String
+        return formatter.format(date);
 	}
 	
 }
