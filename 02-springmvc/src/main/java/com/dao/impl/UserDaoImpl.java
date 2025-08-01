@@ -99,8 +99,13 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public UserEntity findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		try (Session session = connectionService.getSession();) {
+		    String sql = "select * from user u where u.id = :id2 ";
+		    Query<UserEntity> query = session.createNativeQuery(sql, UserEntity.class);
+		    query.setParameter("id2", id);
+		    List<UserEntity> userList = query.getResultList();
+			return userList.get(0);
+		}
 	}
 
 }

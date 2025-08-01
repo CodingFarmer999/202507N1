@@ -47,7 +47,7 @@ public class UserService {
 	
 	public void deleteUserById(Long id) {
 		// 透過ID 找到 UserEntity
-		UserEntity entity = null;
+		UserEntity entity = userDao.findById(id);
 		
 		userDao.delUser(entity);
 		
