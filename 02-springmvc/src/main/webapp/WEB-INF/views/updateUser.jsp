@@ -14,6 +14,7 @@
 	E-MAIL：<input type="text" name="email" value="${user.email}"/><br/>
 	生日：<input type="date" name="birthDay" value="${user.birthDay}"/><br/>
 	<input type="hidden" name="username" value="${user.username}"/>
+	<input type="hidden" name="id" value="${user.id}"/>
 	<button type="submit">更新</button>
 </form>
 <a href="../toUserList">回列表頁</a>
