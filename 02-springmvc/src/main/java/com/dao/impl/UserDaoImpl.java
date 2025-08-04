@@ -14,6 +14,8 @@ import com.dao.UserDao;
 import com.entity.UserEntity;
 import com.service.DbConnectionService;
 
+import jakarta.persistence.NoResultException;
+
 @Repository
 public class UserDaoImpl implements UserDao {
 	
@@ -99,12 +101,21 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public UserEntity findById(Long id) {
+		id = 999L;
 		try (Session session = connectionService.getSession();) {
 		    String sql = "select * from user u where u.id = :id2 ";
 		    Query<UserEntity> query = session.createNativeQuery(sql, UserEntity.class);
 		    query.setParameter("id2", id);
-		    List<UserEntity> userList = query.getResultList();
-			return userList.get(0);
+		    // List<UserEntity> userList = query.getResultList();
+		    // return userList.get(0);
+		    UserEntity userEntity;
+		    try {
+		    	userEntity = query.getSingleResult();
+		    } catch (NoResultException e) {
+		    	return null;
+		    }
+		    
+		    return userEntity;
 		}
 	}
 
