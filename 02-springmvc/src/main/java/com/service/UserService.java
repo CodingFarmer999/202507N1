@@ -103,6 +103,10 @@ public class UserService {
 		UserEntity user = userDao.findById(Long.valueOf(userVo.getId()));
 
 		// "", "    "
+		
+		// "xxx".isBlank();
+		// "YYY".isEmpty();
+		
 		if (userVo.getPassword() != null && !userVo.getPassword().isBlank()) {
 			user.setPassword(userVo.getPassword());
 		}

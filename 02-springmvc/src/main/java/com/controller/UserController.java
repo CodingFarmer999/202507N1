@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.entity.UserEntity;
 import com.service.UserService;
@@ -25,7 +26,7 @@ public class UserController {
 	private UserService userService;
 
 	@RequestMapping("/login")
-	public String login(@RequestParam("u1") String username, @RequestParam("p1") String password) {
+	public String login(@RequestParam(name = "u1", required = false) String username, @RequestParam("p1") String password) {
 		// "/WEB-INF/views/login.jsp" 
 		
 		System.out.println(username);
@@ -51,6 +52,18 @@ public class UserController {
 		List<UserEntity> userList = userService.findAllUser();
 		model.addAttribute("userList", userList);
 		return "userList";
+	}
+	
+	@GetMapping("/toUserList3")
+	public ModelAndView userList3() {
+		List<UserEntity> userList = userService.findAllUser();
+//		model.addAttribute("userList", userList);
+
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("userList", userList);
+		mv.setViewName("userList");
+		
+		return mv;
 	}
 	
 	public String userList2(HttpServletRequest req) {
