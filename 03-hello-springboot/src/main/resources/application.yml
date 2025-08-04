@@ -8,3 +8,5 @@ server:
 logging:
   level: 
     com.course: trace
+  file:
+    path: C:\Users\student\log
