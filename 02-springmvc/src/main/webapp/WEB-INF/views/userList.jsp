@@ -25,5 +25,7 @@ ${userList}
 
 </table>
 <a href="index.jsp">回首頁</a>
+
+<a href="getSession">Get Session</a>
 </body>
 </html>

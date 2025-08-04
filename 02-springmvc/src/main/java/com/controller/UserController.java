@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.entity.UserEntity;
 import com.service.UserService;
+import com.vo.User;
 import com.vo.UserVo;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -97,5 +98,12 @@ public class UserController {
 		
 		return "redirect:/toUserList";
 		
+	}
+	
+	@GetMapping("/getSession")
+	public String getSession() {
+		User user = userService.getSessionUser();
+		System.out.println("Session :" + user.getUsername());
+		return "redirect:/toUserList";
 	}
 }
