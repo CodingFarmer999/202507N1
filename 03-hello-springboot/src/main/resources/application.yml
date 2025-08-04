@@ -1,0 +1,7 @@
+#spring.application.name=03-hello-springboot
+#server.port=9090
+spring:
+  application:
+    name: 03-hello-springboot
+server:
+  port: 9090
