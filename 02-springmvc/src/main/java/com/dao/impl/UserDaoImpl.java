@@ -101,7 +101,6 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public UserEntity findById(Long id) {
-		id = 999L;
 		try (Session session = connectionService.getSession();) {
 		    String sql = "select * from user u where u.id = :id2 ";
 		    Query<UserEntity> query = session.createNativeQuery(sql, UserEntity.class);
