@@ -5,3 +5,6 @@ spring:
     name: 03-hello-springboot
 server:
   port: 9090
+logging:
+  level: 
+    com.course: trace
