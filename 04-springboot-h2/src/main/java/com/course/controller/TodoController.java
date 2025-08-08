@@ -30,4 +30,11 @@ public class TodoController {
 		todoService.deleteById(id);
 		return "index";
 	}
+	
+	@GetMapping("/todoList")
+	public String getAllTodo() {
+		todoService.findAllTodo();
+		return "index";
+	}
+	
 }

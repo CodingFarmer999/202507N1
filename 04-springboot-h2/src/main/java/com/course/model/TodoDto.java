@@ -47,4 +47,10 @@ public class TodoDto {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
+
+	@Override
+	public String toString() {
+		return "TodoDto [id=" + id + ", title=" + title + ", dueDate=" + dueDate + ", status=" + status + "]";
+	}
+	
 }

@@ -1,6 +1,7 @@
 package com.course.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,4 +35,11 @@ public class TodoService {
 	public void deleteById(Long id) {
 		todoDao.delete(id);
 	}
+	public void findAllTodo() {
+		List<TodoDto> dtoList = todoDao.findAll();
+		for (TodoDto dto : dtoList) {
+			System.out.println(dto);
+		}
+	}
+	
 }
