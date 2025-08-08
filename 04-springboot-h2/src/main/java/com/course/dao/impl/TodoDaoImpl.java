@@ -2,6 +2,8 @@ package com.course.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +61,7 @@ public class TodoDaoImpl implements TodoDao {
 	@Override
 	public List<TodoDto> findByTitle(String title) {
 		
+		List<Object> params = new ArrayList<>();
 		StringBuilder sb = new StringBuilder();
 		// StringBuffer sb2 = new StringBuffer();
 		
@@ -71,7 +74,8 @@ public class TodoDaoImpl implements TodoDao {
 		// sb.append(" WHERE 1 = 1 ");
 		sb.append(" WHERE T.ID IS NOT NULL ");
 		if (!title.isBlank()) {
-			sb.append(" AND T.TITLE LIKE ? ");			
+			sb.append(" AND T.TITLE LIKE ? ");	
+			params.add("%" + title + "%");
 		}
 //		sb.append(" AND T.TITLE1 = ? ");
 //		sb.append(" AND T.TITLE2 = ? ");
@@ -84,7 +88,7 @@ public class TodoDaoImpl implements TodoDao {
 			dto.setStatus(rs.getInt("STATUS"));
 			return dto;
 		};
-		return jdbcTemplate.query(sb.toString(), rowMapper, "%" + title + "%");
+		return jdbcTemplate.query(sb.toString(), rowMapper, params.toArray());
 	}
 
 }
