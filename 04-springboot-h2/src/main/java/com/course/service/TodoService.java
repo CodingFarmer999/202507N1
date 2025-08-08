@@ -43,4 +43,10 @@ public class TodoService {
 		return dtoList;
 	}
 	
+	public List<TodoDto> findByTitle(String title) {
+		List<TodoDto> dtoList = todoDao.findByTitle(title);
+
+		return dtoList;
+	}
+	
 }
