@@ -25,7 +25,9 @@
 		<td>使用者</td>
 		<td th:text="${todo.title}">標題</td>
 		<td th:text="${todo.dueDate}">到期日</td>
-		<td th:text="${todo.status}">狀態</td>
+<!-- 		<td th:text="${todo.status}">狀態</td> -->
+		<td th:if="${todo.status == '0'}" th:text="未完成">狀態</td>
+		<td th:if="${todo.status == '1'}" th:text="已完成">狀態</td>
 		<td th:text="${todo.memo}">備註</td>
 		<td>
 			<a>編輯</a>
