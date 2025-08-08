@@ -7,14 +7,22 @@ public class TodoDto {
 	/** 鍵值 */
 	private Long id;
 	
+	/** 使用者鍵值 */
+	private Long userId;
+	
 	/** 標題 */
 	private String title;
 	
 	/** 到期日 */
 	private Date dueDate;
 	
-	/** 狀態*/
+	/** 狀態 */
 	private Integer status;
+	
+	/** 備註 */
+	private String memo;
+	
+	private String username;
 
 	public Long getId() {
 		return id;
@@ -46,6 +54,30 @@ public class TodoDto {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	@Override

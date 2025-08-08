@@ -51,6 +51,7 @@ public class TodoDaoImpl implements TodoDao {
 				dto.setTitle(rs.getString("TITLE"));
 				dto.setDueDate(rs.getDate("DUE_DATE"));
 				dto.setStatus(rs.getInt("STATUS"));
+				dto.setMemo(rs.getString("MEMO"));
 				return dto;
 			}
 		};
