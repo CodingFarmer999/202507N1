@@ -35,11 +35,12 @@ public class TodoService {
 	public void deleteById(Long id) {
 		todoDao.delete(id);
 	}
-	public void findAllTodo() {
+	public List<TodoDto> findAllTodo() {
 		List<TodoDto> dtoList = todoDao.findAll();
 		for (TodoDto dto : dtoList) {
 			System.out.println(dto);
 		}
+		return dtoList;
 	}
 	
 }
