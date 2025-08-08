@@ -21,4 +21,17 @@ public class TodoService {
 		dto.setStatus(0);
 		todoDao.add(dto);
 	}
+	
+	public void updateTodo() {
+		TodoDto dto = new TodoDto();
+		dto.setId(1L);
+		dto.setTitle("吃飯2");
+		dto.setDueDate(new Date());
+		dto.setStatus(0);
+		todoDao.update(dto);
+	}
+	
+	public void deleteById(Long id) {
+		todoDao.delete(id);
+	}
 }
