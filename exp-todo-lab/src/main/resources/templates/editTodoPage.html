@@ -18,9 +18,9 @@
     </div>
     <div>
         <label>狀態:</label>
-        <input type="radio" id="notCompleted" name="status" value="0" />
+        <input type="radio" id="notCompleted" name="status" value="0" th:field="*{status}" />
         <label for="notCompleted">未完成</label>
-        <input type="radio" id="completed" name="status" value="1" />
+        <input type="radio" id="completed" name="status" value="1" th:field="*{status}" />
         <label for="completed">已完成</label>
     </div>
     <div>
