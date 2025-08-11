@@ -51,4 +51,11 @@ public class TodoController {
     	return "redirect:/";
     }
     
+    @GetMapping("/toUpdatePage/{id}")
+    public String toUpdatePage(@PathVariable Long id) {
+
+    	return "editTodoPage";
+    }
+    
+    
 }
