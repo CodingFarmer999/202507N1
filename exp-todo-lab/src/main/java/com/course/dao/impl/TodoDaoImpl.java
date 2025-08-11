@@ -22,8 +22,8 @@ public class TodoDaoImpl implements TodoDao {
 	@Override
 	public void add(TodoDto dto) {
 
-		String sql = "INSERT INTO TODO (TITLE, DUE_DATE, STATUS) VALUES (?, ?, ?) ";
-		jdbcTemplate.update(sql, dto.getTitle(), dto.getDueDate(), dto.getStatus());
+		String sql = "INSERT INTO TODO (TITLE, DUE_DATE, STATUS, USERID, MEMO) VALUES (?, ?, ?, ?, ?) ";
+		jdbcTemplate.update(sql, dto.getTitle(), dto.getDueDate(), dto.getStatus(), dto.getUserId(), dto.getMemo());
 	}
 
 	@Override
@@ -42,7 +42,18 @@ public class TodoDaoImpl implements TodoDao {
 
 	@Override
 	public List<TodoDto> findAll() {
-		String sql = "SELECT * FROM TODO";
+		// String sql = "SELECT * FROM TODO";
+		StringBuilder sb = new StringBuilder();
+		sb.append(" SELECT ");
+		sb.append(" T.ID, ");
+		sb.append(" T.TITLE, ");
+		sb.append(" T.DUE_DATE, ");
+		sb.append(" T.STATUS, ");
+		sb.append(" T.MEMO, ");
+		sb.append(" U.USERNAME ");
+		sb.append(" FROM TODO T ");
+		sb.append(" LEFT JOIN USER U ON T.USERID = U.ID ");
+		
 		RowMapper<TodoDto> rowMapper = new RowMapper<>() {
 			@Override
 			public TodoDto mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -52,10 +63,11 @@ public class TodoDaoImpl implements TodoDao {
 				dto.setDueDate(rs.getDate("DUE_DATE"));
 				dto.setStatus(rs.getInt("STATUS"));
 				dto.setMemo(rs.getString("MEMO"));
+				dto.setUsername(rs.getString("USERNAME"));
 				return dto;
 			}
 		};
-		return jdbcTemplate.query(sql, rowMapper);
+		return jdbcTemplate.query(sb.toString(), rowMapper);
 	}
 
 	@Override
