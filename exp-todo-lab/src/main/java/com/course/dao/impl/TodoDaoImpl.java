@@ -35,7 +35,7 @@ public class TodoDaoImpl implements TodoDao {
 
 	@Override
 	public void delete(Long id) {
-		String sql = "DELETE FROM TODO WHERE ID =　? ";
+		String sql = "DELETE FROM TODO WHERE ID = ? ";
 		jdbcTemplate.update(sql, id);
 		
 	}
