@@ -32,12 +32,13 @@ public class TodoController {
     }
     
     @GetMapping("/toAddPage")
-    public String toAddPage() {
+    public String toAddPage(@ModelAttribute("todoObj") TodoVo todo) {
     	return "addTodoPage";
     }
     
     @PostMapping("/todo")
-    public String addTodo() {
+    public String addTodo(@ModelAttribute("todoObj") TodoVo todo) {
+    	
     	return "index";
     }
     

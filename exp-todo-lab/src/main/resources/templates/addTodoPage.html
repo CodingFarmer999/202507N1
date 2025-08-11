@@ -15,13 +15,13 @@
     </div>
     <div>
         <label for="dueDate">到期日:</label>
-        <input type="date" id="dueDate" />
+        <input type="date" id="dueDate" th:field="*{dueDate}"/>
         <span class="error"></span>
     </div>
     
     <div>
         <label for="memo">備註:</label>
-        <input type="text" id="memo" />
+        <input type="text" id="memo" th:field="*{memo}"/>
     </div>
     <div>
         <button type="submit">新增待辦事項</button>
