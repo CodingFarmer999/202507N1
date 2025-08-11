@@ -22,13 +22,13 @@ public class TodoDaoImpl implements TodoDao {
 	@Override
 	public void add(TodoDto dto) {
 
-		String sql = "INSERT INTO TODO (TITLE, DUEDATE, STATUS) VALUES (?, ?, ?) ";
+		String sql = "INSERT INTO TODO (TITLE, DUE_DATE, STATUS) VALUES (?, ?, ?) ";
 		jdbcTemplate.update(sql, dto.getTitle(), dto.getDueDate(), dto.getStatus());
 	}
 
 	@Override
 	public void update(TodoDto dto) {
-		String sql = "UPDATE TODO SET TITLE = ?, DUEDATE = ?, STATUS = ? WHERE ID =　? ";
+		String sql = "UPDATE TODO SET TITLE = ?, DUE_DATE = ?, STATUS = ? WHERE ID =　? ";
 		jdbcTemplate.update(sql, dto.getTitle(), dto.getDueDate(), dto.getStatus(), dto.getId());
 		
 	}

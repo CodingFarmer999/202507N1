@@ -39,7 +39,8 @@ public class TodoController {
     @PostMapping("/todo")
     public String addTodo(@ModelAttribute("todoObj") TodoVo todo) {
     	
-    	return "index";
+    	todoService.addTodo(todo);
+    	return "redirect:/";
     }
     
 }
