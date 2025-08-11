@@ -30,4 +30,9 @@ public class TodoController {
 //    	return "<script>alert('!!!!!!')</script>";
     }
     
+    @GetMapping("/toAddPage")
+    public String toAddPage() {
+    	return "addTodoPage";
+    }
+    
 }
