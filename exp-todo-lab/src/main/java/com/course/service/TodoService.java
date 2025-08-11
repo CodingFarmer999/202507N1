@@ -32,4 +32,8 @@ public class TodoService {
 		TodoDto dto = helper.convertToDto(todoVo);
 		todoDao.add(dto);
 	}
+
+	public void deleteTodo(Long id) {
+		todoDao.delete(id);
+	}
 }
