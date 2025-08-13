@@ -1,15 +1,23 @@
 package com.course.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+//@Controller
+@RestController
+@RequestMapping(value = "/kitty")
 public class HelloRestController {
 
 	@GetMapping("/hello")
-	@ResponseBody
+//	@ResponseBody
 	public String hello() {
-		return "hello";
+		return "hello kitty";
+	}
+	
+	@GetMapping("/hello2")
+//	@ResponseBody
+	public String hello2() {
+		return "hello2";
 	}
 }
