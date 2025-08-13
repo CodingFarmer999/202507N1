@@ -1,14 +1,20 @@
 package com.course.model;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class TodoVo {
 
 	/** 鍵值 */
 	private Long id;
 	
 	/** 標題 */
+	@NotBlank
 	private String title;
 	
 	/** 到期日 */
+	@NotBlank
+	@NotNull
 	private String dueDate;
 	
 	/** 狀態 */
