@@ -7,6 +7,11 @@
 <body>
 <h1 th:text="${title}">待辦事項</h1>
 
+<div>
+	<img th:src="@{img/todo2.jpg}" width="800px"/>
+</div>
+
+
 <a th:href="@{/toAddPage}">新增</a>
 
 <hr/>
@@ -37,7 +42,11 @@
 	</tr>
 </table>
 
-<div>
+<div th:replace="~{common :: footer2}">
+© 2025 待辦事項. All Rights Reserved.
+</div>
+
+<div th:include="~{common :: footer2}">
 © 2025 待辦事項. All Rights Reserved.
 </div>
 
