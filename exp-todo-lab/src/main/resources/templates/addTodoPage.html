@@ -11,12 +11,12 @@
     <div>
         <label for="title">標題:</label>
         <input type="text" id="title" th:field="*{title}" />
-        <span class="error"></span>
+        <span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
     </div>
     <div>
         <label for="dueDate">到期日:</label>
         <input type="date" id="dueDate" th:field="*{dueDate}"/>
-        <span class="error"></span>
+        <span class="error" th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}"></span>
     </div>
     
     <div>
