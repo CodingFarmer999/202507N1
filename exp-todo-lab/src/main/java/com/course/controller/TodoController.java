@@ -58,5 +58,12 @@ public class TodoController {
     	return "editTodoPage";
     }
     
+    @PostMapping("/editTodo")
+    public String editTodo(@ModelAttribute("todoObj") TodoVo todo) {
+    	
+    	todoService.editTodo(todo);
+    	return "redirect:/";
+    }
+    
     
 }

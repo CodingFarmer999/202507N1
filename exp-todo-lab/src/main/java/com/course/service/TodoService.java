@@ -46,4 +46,10 @@ public class TodoService {
 		TodoDto dto = todoDao.findById(id);
 		return helper.convertToVo(dto);
 	}
+
+	public void editTodo(TodoVo todo) {
+		TodoDto dto = helper.convertToDto(todo);
+		todoDao.update(dto);
+		
+	}
 }
