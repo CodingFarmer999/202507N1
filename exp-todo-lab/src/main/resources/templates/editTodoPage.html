@@ -7,7 +7,7 @@
 <body>
 <h1>編輯代辦事項</h1>
 <form th:action="@{/editTodo}" th:object="${todoObj}" method="POST">
-	<input type="hidden" id="id" />
+	<input type="hidden" id="id" th:field="*{id}"/>
     <div>
         <label for="title">標題:</label>
         <input type="text" id="title" th:field="*{title}"/>
