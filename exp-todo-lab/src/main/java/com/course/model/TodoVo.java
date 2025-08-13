@@ -13,8 +13,8 @@ public class TodoVo {
 	private String title;
 	
 	/** 到期日 */
-	@NotBlank
-	@NotNull
+	@NotBlank(message = "你給我去填到期日啊啊啊啊")
+	@NotNull(message = "你給我去填到期日啊啊啊啊")
 	private String dueDate;
 	
 	/** 狀態 */
