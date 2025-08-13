@@ -42,11 +42,14 @@ public class TodoController {
     
     @PostMapping("/todo")
     public String addTodo(@Valid @ModelAttribute("todoObj") TodoVo todo, BindingResult bindingResult) {
-    	if (!bindingResult.hasErrors()) {
-        	todoService.addTodo(todo);
-        }
-//    	todoService.addTodo(todo);
-    	return "redirect:/";
+		if (bindingResult.hasErrors()) {
+			// 有欄位檢核錯誤，回到新增頁面
+			return "addTodoPage";
+		}
+
+		todoService.addTodo(todo);
+		// 新增完畢後，轉導至首頁，避免refresh重送新增
+		return "redirect:/";
     }
     
     @GetMapping("/delete/{id}")
