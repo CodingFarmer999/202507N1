@@ -8,3 +8,6 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
+#server:
+  #servlet:
+    #context-path: /test

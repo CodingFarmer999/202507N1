@@ -31,6 +31,7 @@
 		<td th:text="${todo.memo}">備註</td>
 		<td>
 			<a th:href="@{/toUpdatePage/{id} (id=${todo.id})}">編輯</a>
+<!-- 			<a href="/toUpdatePage/1">編輯</a> -->
 			<a th:href="@{/delete/{id} (id=${todo.id})}">刪除</a>
 		</td>
 	</tr>
