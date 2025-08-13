@@ -1,5 +1,7 @@
 package com.course.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -28,6 +30,9 @@ public class TodoVo {
 	
 	/** 使用者名稱 */
 	private String username;
+	
+	/** 檔案 */
+	private MultipartFile file;
 
 	public String getTitle() {
 		return title;
@@ -83,6 +88,14 @@ public class TodoVo {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 
 	@Override
