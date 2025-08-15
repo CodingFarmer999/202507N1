@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.course.model.User;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 //@Controller
 @RestController
 //@RequestMapping(value = "/kitty")
@@ -34,6 +36,7 @@ public class HelloRestController {
 		return "hello2";
 	}
 	
+	@Operation(summary = "取得使用者", description = "詳細描述", tags = { "使用者專用" })
 	@GetMapping("/users")
 	public List<User> getUsers() {
 		User user1 = new User("Kitty", "1234");
@@ -41,6 +44,8 @@ public class HelloRestController {
 		return Arrays.asList(user1, user2);
 	}
 	
+
+	@Operation(summary = "新增使用者", description = "新增詳細描述", tags = { "使用者專用" })
 	@PostMapping("/user")
 	public User addUser(User user) {
 		user.setUsername(user.getUsername() + "!!!!!");
