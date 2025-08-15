@@ -3,6 +3,8 @@ package com.course.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -76,4 +78,20 @@ public class HelloRestController {
 		// 刪除
 
 	}
+	
+	@GetMapping("/ok")
+	public String ok() {
+	    return "OK!!!!!!";
+	}
+	
+	@GetMapping("/ok2")
+	public ResponseEntity<String> ok2() {
+	    return ResponseEntity.ok("OK!!!!!!");
+	}
+	
+	@GetMapping("/no-ok")
+	public ResponseEntity<String> noOk() {
+	    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("NO!!!!!!");
+	}
+
 }
