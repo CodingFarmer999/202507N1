@@ -3,8 +3,12 @@ package com.course.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,5 +48,24 @@ public class HelloRestController {
 	public User addUserJson(@RequestBody User user) {
 		user.setUsername(user.getUsername() + "!!!!!");
 		return user;
+	}
+	
+	@PutMapping("/json/user")
+	public User updateUserJson(@RequestBody User user) {
+		user.setUsername(user.getUsername() + "!!!!!");
+		return user;
+	}
+	
+	@PatchMapping("/json/user")
+	public User updatePatchUserJson(@RequestBody User user) {
+		user.setUsername(user.getUsername() + "!!!!!");
+		return user;
+	}
+	
+	@DeleteMapping("/json/user/{username}")
+	public void updatePatchUserJson(@PathVariable String  username) {
+		System.out.println("@DeleteMapping: " + username);
+		// 刪除
+
 	}
 }
