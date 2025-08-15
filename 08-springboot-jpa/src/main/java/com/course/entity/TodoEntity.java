@@ -2,9 +2,11 @@ package com.course.entity;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "TODO")
@@ -15,6 +17,8 @@ public class TodoEntity {
 	private Long id;
 	
 	/** 使用者鍵值 */
+	@Column(name = "userId")
+	@Transient
 	private Long userId;
 	
 	/** 標題 */
