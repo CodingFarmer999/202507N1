@@ -4,7 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.course.model.User;
@@ -31,5 +32,17 @@ public class HelloRestController {
 		User user1 = new User("Kitty", "1234");
 		User user2 = new User("Snoopy", "1234");
 		return Arrays.asList(user1, user2);
+	}
+	
+	@PostMapping("/user")
+	public User addUser(User user) {
+		user.setUsername(user.getUsername() + "!!!!!");
+		return user;
+	}
+	
+	@PostMapping("/json/user")
+	public User addUserJson(@RequestBody User user) {
+		user.setUsername(user.getUsername() + "!!!!!");
+		return user;
 	}
 }
