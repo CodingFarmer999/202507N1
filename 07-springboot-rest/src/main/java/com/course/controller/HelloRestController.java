@@ -25,7 +25,8 @@ import io.swagger.v3.oas.annotations.Operation;
 @RestController
 //@RequestMapping(value = "/kitty")
 // @CrossOrigin("*")
-@CrossOrigin("http://127.0.0.1:5500")
+//@CrossOrigin("http://127.0.0.1:5500")
+@CrossOrigin(origins = { "http://127.0.0.1:5500" }, allowedHeaders = "*", allowCredentials = "true")
 public class HelloRestController {
 
 	@GetMapping("/hello")
