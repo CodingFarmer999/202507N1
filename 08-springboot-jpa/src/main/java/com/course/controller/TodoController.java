@@ -64,4 +64,10 @@ public class TodoController {
 	public List<TodoEntity> getTodoByDueDateBetween(@RequestParam String startDate, @RequestParam String endDate) {
 		return todoService.getTodoByDueDateBetween(startDate, endDate);
 	}
+	
+	@Operation(summary = "取得待辦事項(findByIdIn)", tags = "Query Method")
+	@GetMapping("/todo-in/")
+	public List<TodoEntity> getTodoByDueDateBetween() {
+		return todoService.getTodoIn();
+	}
 }
