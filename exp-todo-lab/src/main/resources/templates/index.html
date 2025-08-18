@@ -16,6 +16,13 @@
 
 <hr/>
 
+<form th:action="@{/search}" th:object="${condition}" method="GET">
+	標題關鍵字：<input type="text" id="title" th:field="*{title}" /><br/>
+	<input type="submit" value="搜尋"/>
+</form>
+
+<hr/>
+
 <table border="1">
 	<tr>
 		<td>使用者</td>

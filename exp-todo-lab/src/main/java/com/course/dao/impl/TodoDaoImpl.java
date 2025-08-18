@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.course.dao.TodoDao;
+import com.course.model.SearchCondition;
 import com.course.model.TodoDto;
 
 @Repository
@@ -23,7 +24,7 @@ public class TodoDaoImpl implements TodoDao {
 	@Override
 	public void add(TodoDto dto) {
 
-		String sql = "INSERT INTO TODO (TITLE, DUE_DATE, STATUS, USERID, MEMO) VALUES (?, ?, ?, ?, ?) ";
+		String sql = "INSERT INTO TODO (TITLE, DUE_DATE, STATUS, USER_ID, MEMO) VALUES (?, ?, ?, ?, ?) ";
 		jdbcTemplate.update(sql, dto.getTitle(), dto.getDueDate(), dto.getStatus(), dto.getUserId(), dto.getMemo());
 	}
 
@@ -53,7 +54,7 @@ public class TodoDaoImpl implements TodoDao {
 		sb.append(" T.MEMO, ");
 		sb.append(" U.USERNAME ");
 		sb.append(" FROM TODO T ");
-		sb.append(" LEFT JOIN USER U ON T.USERID = U.ID ");
+		sb.append(" LEFT JOIN USER U ON T.USER_ID = U.ID ");
 		
 		RowMapper<TodoDto> rowMapper = new RowMapper<>() {
 			@Override
@@ -129,5 +130,41 @@ public class TodoDaoImpl implements TodoDao {
 		}
 		
 		return result;
+	}
+	
+	@Override
+	public List<TodoDto> findByCondition(SearchCondition condition) {
+		
+	    // 條件參數列表
+	    List<Object> params = new ArrayList<>();
+	    
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT ");
+		sb.append("T.ID, ");
+		sb.append("T.TITLE, ");
+		sb.append("T.DUE_DATE, ");
+		sb.append("T.STATUS, ");
+		sb.append("T.MEMO, ");
+		sb.append("U.USERNAME ");
+		sb.append("FROM TODO T ");
+		sb.append("JOIN USER U ON U.ID = T.USER_ID ");
+		sb.append("WHERE T.ID IS NOT NULL ");
+		if (condition.getTitle() != null && !condition.getTitle().isBlank()) {
+			sb.append("AND (T.TITLE LIKE ? OR T.MEMO LIKE ?) ");
+			params.add("%" + condition.getTitle() + "%");
+			params.add("%" + condition.getTitle() + "%");
+		}
+		
+		RowMapper<TodoDto> rowMapper = (rs, rowNum) -> {
+			TodoDto dto = new TodoDto();
+			dto.setId(rs.getLong("ID"));
+			dto.setTitle(rs.getString("TITLE"));
+			dto.setDueDate(rs.getDate("DUE_DATE"));
+			dto.setStatus(rs.getInt("STATUS"));
+			dto.setMemo(rs.getString("MEMO"));
+			dto.setUsername(rs.getString("USERNAME"));
+			return dto;
+		};
+		return jdbcTemplate.query(sb.toString(), rowMapper, params.toArray());
 	}
 }

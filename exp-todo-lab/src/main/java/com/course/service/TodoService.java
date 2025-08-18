@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.course.dao.TodoDao;
+import com.course.model.SearchCondition;
 import com.course.model.TodoDto;
 import com.course.model.TodoVo;
 
@@ -82,5 +83,15 @@ public class TodoService {
 		Path filePath = uploadPath.resolve(file.getOriginalFilename());
 		// 如果檔案已經存在，直接覆蓋舊檔
 		Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+	}
+	
+	/**
+	 * 依條件搜尋
+	 * @param condition
+	 * @return
+	 */
+	public List<TodoVo> searchByCondition(SearchCondition condition) {
+		List<TodoDto> dtoList = todoDao.findByCondition(condition);
+		return dtoList.stream().map(dto -> helper.convertToVo(dto)).collect(Collectors.toList());
 	}
 }

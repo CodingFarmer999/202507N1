@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.course.model.SearchCondition;
 import com.course.model.TodoVo;
 import com.course.service.TodoService;
 
@@ -72,5 +73,16 @@ public class TodoController {
     	return "redirect:/";
     }
     
+	@ModelAttribute("condition")
+	public SearchCondition getCondition() {
+		return new SearchCondition();
+	}
+	
+	@GetMapping("/search")
+	public String search(@ModelAttribute SearchCondition condition, Model model) {
+		List<TodoVo> todoList = todoService.searchByCondition(condition);
+		model.addAttribute("todoList", todoList);
+		return "index";
+	}
     
 }
