@@ -3,7 +3,9 @@ package com.course.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,5 +31,11 @@ public class TodoController {
 	@PostMapping("/todo")
 	public TodoEntity addTodo(@RequestBody TodoEntity entity) {
 		return todoService.addTodo(entity);
+	}
+	
+	@Operation(summary = "刪除待辦事項(deleteById)", tags = "JPA 原生方法")
+	@DeleteMapping("/todo/{id}")
+	public void deleteTodo(@PathVariable Long id) {
+		todoService.deleteTodo(id);
 	}
 }

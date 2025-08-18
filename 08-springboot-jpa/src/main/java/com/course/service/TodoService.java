@@ -21,4 +21,12 @@ public class TodoService {
 	public List<TodoEntity> getAllTodo() {
 		return todoRepository.findAll();
 	}
+
+	public TodoEntity addTodo(TodoEntity entity) {
+		return todoRepository.save(entity);
+	}
+	
+	public void deleteTodo(Long id) {
+		todoRepository.deleteById(id);
+	}
 }
