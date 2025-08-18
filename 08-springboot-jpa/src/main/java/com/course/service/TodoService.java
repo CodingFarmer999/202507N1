@@ -103,4 +103,12 @@ public class TodoService {
 		ids.add(11L);
 		return todoRepository.findByIdIn(ids);
 	}
+	
+	/**
+	 * 取得待辦事項(排序)
+	 * @return
+	 */
+	public List<TodoEntity> getTodoOrderByTitle(String title) {
+		return todoRepository.findByTitleOrderByDueDateDesc(title);
+	}
 }

@@ -70,4 +70,10 @@ public class TodoController {
 	public List<TodoEntity> getTodoByDueDateBetween() {
 		return todoService.getTodoIn();
 	}
+	
+	@Operation(summary = "取得待辦事項(findByTitleOrderByDueDateDesc)", tags = "Query Method ")
+	@GetMapping("/todo-order/{title}")
+	public List<TodoEntity> getTodoListByTitleOrder(@PathVariable String title) {
+		return todoService.getTodoOrderByTitle(title);
+	}
 }
