@@ -35,8 +35,6 @@ public class TodoService {
 		Long id = entity.getId();
 		Optional<TodoEntity> todoOp = todoRepository.findById(id);
 		
-		
-		
 		if (todoOp.isPresent()) {
 			// 有東西
 			TodoEntity todo = todoOp.get();
@@ -51,5 +49,13 @@ public class TodoService {
 //		return todoRepository.save(todoEntity2);
 		
 		return null;
+	}
+	
+	public void deleteAllTodo() {
+
+		// 一筆一筆刪
+		todoRepository.deleteAll();
+		// 一次刪全部
+		todoRepository.deleteAllInBatch();
 	}
 }
