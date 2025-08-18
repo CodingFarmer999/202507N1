@@ -45,4 +45,10 @@ public class TodoController {
 	public TodoEntity updateTodo(@RequestBody TodoEntity entity) {
 		return todoService.updateTodo(entity);
 	}
+	
+	@Operation(summary = "取得待辦事項(findByTitle)", tags = "Query Method 原生方法")
+	@GetMapping("/todo/{title}")
+	public List<TodoEntity> getTodoListByTitle(@PathVariable String title) {
+		return todoService.getTodoByTitle(title);
+	}
 }

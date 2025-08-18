@@ -58,4 +58,12 @@ public class TodoService {
 		// 一次刪全部
 		todoRepository.deleteAllInBatch();
 	}
+	
+	/**
+	 * 取得所有待辦事項
+	 * @return
+	 */
+	public List<TodoEntity> getTodoByTitle(String title) {
+		return todoRepository.findByTitle(title);
+	}
 }
