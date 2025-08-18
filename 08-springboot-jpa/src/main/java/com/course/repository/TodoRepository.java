@@ -22,4 +22,8 @@ public interface TodoRepository extends JpaRepository<TodoEntity, Long> {
 	
 	// SQL語句：select * from todo where id in (?, ?, ?);
 	List<TodoEntity> findByIdIn(List<Long> ids);
+	
+	List<TodoEntity> findByTitleOrderByDueDateDesc(String title);
+	
+	List<TodoEntity> findAllByOrderByDueDate();
 }
