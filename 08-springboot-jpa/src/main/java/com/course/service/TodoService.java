@@ -1,5 +1,8 @@
 package com.course.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,6 +75,19 @@ public class TodoService {
 	 * @return
 	 */
 	public List<TodoEntity> getTodoByTitleLike(String title) {
-		return todoRepository.findByTitleLike("%" + title +'%');
+		return todoRepository.findByTitleLike("%" + title + '%');
+	}
+	
+	public List<TodoEntity> getTodoByDueDateBetween(String startDate, String endDate) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date start = null;
+		Date end = null;
+		try {
+		    start = dateFormat.parse(startDate + " 00:00:00");
+		    end = dateFormat.parse(endDate + " 23:59:59");
+		} catch (ParseException e) {
+		    e.printStackTrace();
+		}
+		return todoRepository.findByDueDateBetween(start, end);
 	}
 }

@@ -1,5 +1,6 @@
 package com.course.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +16,7 @@ public interface TodoRepository extends JpaRepository<TodoEntity, Long> {
 	List<TodoEntity> findByTitleLike(String title);
 	
 	List<TodoEntity> findByTitleAndMemo(String title, String memo);
+	
+	// SQL語句：select * from todo where due_date between ? and ?
+	List<TodoEntity> findByDueDateBetween(Date startDate, Date endDate);
 }
