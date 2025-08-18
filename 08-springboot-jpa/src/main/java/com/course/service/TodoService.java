@@ -1,6 +1,7 @@
 package com.course.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,27 @@ public class TodoService {
 	
 	public void deleteTodo(Long id) {
 		todoRepository.deleteById(id);
+	}
+	
+	public TodoEntity updateTodo(TodoEntity entity) {
+		Long id = entity.getId();
+		Optional<TodoEntity> todoOp = todoRepository.findById(id);
+		
+		
+		
+		if (todoOp.isPresent()) {
+			// 有東西
+			TodoEntity todo = todoOp.get();
+			todo.setTitle(entity.getTitle());
+			// 其他欄位的話，繼續更新
+			todo.setMemo(entity.getMemo());
+			
+			return todoRepository.save(todo);
+		}
+		
+//		TodoEntity todoEntity2 = todoRepository.findById(id).orElse(null);
+//		return todoRepository.save(todoEntity2);
+		
+		return null;
 	}
 }

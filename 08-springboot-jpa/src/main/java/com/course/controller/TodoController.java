@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,5 +38,11 @@ public class TodoController {
 	@DeleteMapping("/todo/{id}")
 	public void deleteTodo(@PathVariable Long id) {
 		todoService.deleteTodo(id);
+	}
+	
+	@Operation(summary = "更新待辦事項(save)", tags = "JPA 原生方法")
+	@PatchMapping("/todo")
+	public TodoEntity updateTodo(@RequestBody TodoEntity entity) {
+		return todoService.updateTodo(entity);
 	}
 }
