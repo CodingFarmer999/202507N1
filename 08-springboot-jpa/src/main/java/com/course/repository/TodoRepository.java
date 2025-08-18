@@ -19,4 +19,7 @@ public interface TodoRepository extends JpaRepository<TodoEntity, Long> {
 	
 	// SQL語句：select * from todo where due_date between ? and ?
 	List<TodoEntity> findByDueDateBetween(Date startDate, Date endDate);
+	
+	// SQL語句：select * from todo where id in (?, ?, ?);
+	List<TodoEntity> findByIdIn(List<Long> ids);
 }

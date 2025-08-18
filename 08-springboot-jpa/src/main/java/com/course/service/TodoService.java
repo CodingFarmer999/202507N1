@@ -2,6 +2,7 @@ package com.course.service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -89,5 +90,17 @@ public class TodoService {
 		    e.printStackTrace();
 		}
 		return todoRepository.findByDueDateBetween(start, end);
+	}
+	
+	/**
+	 * 取得待辦事項，模糊搜尋
+	 * @return
+	 */
+	public List<TodoEntity> getTodoIn() {
+		List<Long> ids = new ArrayList<>();
+		ids.add(1L);
+		ids.add(10L);
+		ids.add(11L);
+		return todoRepository.findByIdIn(ids);
 	}
 }
