@@ -11,4 +11,8 @@ import com.course.entity.TodoEntity;
 public interface TodoRepository extends JpaRepository<TodoEntity, Long> {
 
 	List<TodoEntity> findByTitle(String title);
+	
+	List<TodoEntity> findByTitleLike(String title);
+	
+	List<TodoEntity> findByTitleAndMemo(String title, String memo);
 }

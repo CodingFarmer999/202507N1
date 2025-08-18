@@ -46,9 +46,15 @@ public class TodoController {
 		return todoService.updateTodo(entity);
 	}
 	
-	@Operation(summary = "取得待辦事項(findByTitle)", tags = "Query Method 原生方法")
+	@Operation(summary = "取得待辦事項(findByTitle)", tags = "Query Method ")
 	@GetMapping("/todo/{title}")
 	public List<TodoEntity> getTodoListByTitle(@PathVariable String title) {
 		return todoService.getTodoByTitle(title);
+	}
+	
+	@Operation(summary = "取得待辦事項(findByTitleLike)", tags = "Query Method")
+	@GetMapping("/todo-like/{title}")
+	public List<TodoEntity> findByTitleLike(@PathVariable String title) {
+		return todoService.getTodoByTitleLike(title);
 	}
 }

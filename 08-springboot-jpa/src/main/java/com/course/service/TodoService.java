@@ -60,10 +60,18 @@ public class TodoService {
 	}
 	
 	/**
-	 * 取得所有待辦事項
+	 * 取得待辦事項
 	 * @return
 	 */
 	public List<TodoEntity> getTodoByTitle(String title) {
 		return todoRepository.findByTitle(title);
+	}
+	
+	/**
+	 * 取得待辦事項，模糊搜尋
+	 * @return
+	 */
+	public List<TodoEntity> getTodoByTitleLike(String title) {
+		return todoRepository.findByTitleLike("%" + title +'%');
 	}
 }
