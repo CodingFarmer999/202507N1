@@ -3,6 +3,7 @@ package com.course.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -102,4 +103,11 @@ public class TodoController {
 	public List<TodoEntity> getAllTodoListSort() {
 		return todoService.getAllTodoSort();
 	}
+	
+	@Operation(summary = "取得所有待辦事項(分頁)(findAll)", tags = "分頁")
+	@GetMapping("/todos-page/{pageNumber}/{pageSize}")
+	public Page<TodoEntity> getAllTodoListPageable(@PathVariable Integer pageNumber,@PathVariable Integer pageSize) {
+		return todoService.getAllTodoPageable(pageNumber, pageSize);
+	}
+	
 }

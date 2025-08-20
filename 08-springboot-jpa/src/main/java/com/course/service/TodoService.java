@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -139,5 +142,16 @@ public class TodoService {
 		// Sort sort = Sort.by("dueDate", "title");
 		Sort sort = Sort.by("status");
 		return todoRepository.findAll(sort);
+	}
+
+	/**
+	 * 取得所有待辦事項(分頁)
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
+	public Page<TodoEntity> getAllTodoPageable(Integer pageNumber, Integer pageSize) {
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		return todoRepository.findAll(pageable);
 	}
 }
