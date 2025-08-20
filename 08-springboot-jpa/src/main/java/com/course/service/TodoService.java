@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.course.entity.TodoEntity;
@@ -128,5 +129,15 @@ public class TodoService {
 	
 	public void updateTodoTitle(Long id, String title) {
 		todoRepository.updateTodoTitle(title, id);
+	}
+	
+	/**
+	 * 取得所有待辦事項(排序)
+	 * @return
+	 */
+	public List<TodoEntity> getAllTodoSort() {
+		// Sort sort = Sort.by("dueDate", "title");
+		Sort sort = Sort.by("status");
+		return todoRepository.findAll(sort);
 	}
 }

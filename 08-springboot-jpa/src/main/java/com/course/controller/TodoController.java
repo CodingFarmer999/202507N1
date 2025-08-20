@@ -96,4 +96,10 @@ public class TodoController {
 		todoService.updateTodoTitle(id, title);
 		return ResponseEntity.ok("OK");
 	}
+	
+	@Operation(summary = "取得所有待辦事項(排序)(findAll)", tags = "排序")
+	@GetMapping("/todos-sort")
+	public List<TodoEntity> getAllTodoListSort() {
+		return todoService.getAllTodoSort();
+	}
 }

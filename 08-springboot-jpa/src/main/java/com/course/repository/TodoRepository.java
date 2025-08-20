@@ -3,6 +3,7 @@ package com.course.repository;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -16,6 +17,8 @@ import com.course.entity.TodoEntity;
 public interface TodoRepository extends JpaRepository<TodoEntity, Long> {
 
 	List<TodoEntity> findByTitle(String title);
+	
+	List<TodoEntity> findByTitle(String title, Sort sort);
 	
 	List<TodoEntity> findByTitleLike(String title);
 	
