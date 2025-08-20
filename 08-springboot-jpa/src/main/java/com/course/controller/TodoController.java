@@ -47,7 +47,7 @@ public class TodoController {
 		return todoService.updateTodo(entity);
 	}
 	
-	@Operation(summary = "取得待辦事項(findByTitle)", tags = "Query Method ")
+	@Operation(summary = "取得待辦事項(findByTitle)", tags = "Query Method")
 	@GetMapping("/todo/{title}")
 	public List<TodoEntity> getTodoListByTitle(@PathVariable String title) {
 		return todoService.getTodoByTitle(title);
@@ -71,9 +71,15 @@ public class TodoController {
 		return todoService.getTodoIn();
 	}
 	
-	@Operation(summary = "取得待辦事項(findByTitleOrderByDueDateDesc)", tags = "Query Method ")
+	@Operation(summary = "取得待辦事項(findByTitleOrderByDueDateDesc)", tags = "Query Method")
 	@GetMapping("/todo-order/{title}")
 	public List<TodoEntity> getTodoListByTitleOrder(@PathVariable String title) {
 		return todoService.getTodoOrderByTitle(title);
+	}
+	
+	@Operation(summary = "取得待辦事項(findByCondition)", tags = "@Query")
+	@GetMapping("/todo-query/{title}")
+	public List<TodoEntity> getTodoByCondition(@PathVariable String title) {
+		return todoService.getTodoByTitleQuery(title);
 	}
 }

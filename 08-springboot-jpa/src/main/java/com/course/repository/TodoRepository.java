@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.course.entity.TodoEntity;
@@ -26,4 +27,10 @@ public interface TodoRepository extends JpaRepository<TodoEntity, Long> {
 	List<TodoEntity> findByTitleOrderByDueDateDesc(String title);
 	
 	List<TodoEntity> findAllByOrderByDueDate();
+	
+	List<TodoEntity> findByTitleContainingOrderByDueDateDesc(String title);
+	
+	// JPQL
+	@Query("select t from TodoEntity t where t.title like ?1 ")
+	List<TodoEntity> findByCondition(String title);
 }

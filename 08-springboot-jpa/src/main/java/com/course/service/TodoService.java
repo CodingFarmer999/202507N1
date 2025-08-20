@@ -109,6 +109,16 @@ public class TodoService {
 	 * @return
 	 */
 	public List<TodoEntity> getTodoOrderByTitle(String title) {
-		return todoRepository.findByTitleOrderByDueDateDesc(title);
+		return todoRepository.findByTitleContainingOrderByDueDateDesc(title);
+		// return todoRepository.findByTitleOrderByDueDateDesc(title);
+	}
+	
+	/**
+	 * 取得待辦事項(Query)
+	 * @return
+	 */
+	public List<TodoEntity> getTodoByTitleQuery(String title) {
+		return todoRepository.findByCondition("%" + title + "%");
+		// return todoRepository.findByTitleOrderByDueDateDesc(title);
 	}
 }
