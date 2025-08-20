@@ -154,4 +154,13 @@ public class TodoService {
 		Pageable pageable = PageRequest.of(pageNumber, pageSize);
 		return todoRepository.findAll(pageable);
 	}
+	/**
+	 * 取得所有待辦事項(分頁)
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
+	public Page<TodoEntity> getAllTodoPageable2(Pageable pageable) {
+		return todoRepository.findAll(pageable);
+	}
 }
