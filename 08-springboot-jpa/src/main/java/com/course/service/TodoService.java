@@ -118,7 +118,7 @@ public class TodoService {
 	 * @return
 	 */
 	public List<TodoEntity> getTodoByTitleQuery(String title) {
-		return todoRepository.findByCondition("%" + title + "%");
-		// return todoRepository.findByTitleOrderByDueDateDesc(title);
+		// return todoRepository.findByCondition("%" + title + "%");
+		return todoRepository.findByConditionNative("%" + title + "%");
 	}
 }

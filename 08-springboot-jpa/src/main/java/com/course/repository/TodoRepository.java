@@ -31,6 +31,11 @@ public interface TodoRepository extends JpaRepository<TodoEntity, Long> {
 	List<TodoEntity> findByTitleContainingOrderByDueDateDesc(String title);
 	
 	// JPQL
-	@Query("select t from TodoEntity t where t.title like ?1 ")
+	@Query("select t from TodoEntity t where t.title like ?1 order by t.dueDate desc")
 	List<TodoEntity> findByCondition(String title);
+	
+	// @Query("select t from TodoEntity t where t.title like ?1  order by t.dueDate desc")
+	@Query(nativeQuery = true, value = "select * from todo t where t.title like ? order by t.due_date desc")
+	List<TodoEntity> findByConditionNative(String title);
+	
 }
