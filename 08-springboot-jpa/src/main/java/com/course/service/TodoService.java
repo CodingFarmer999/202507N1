@@ -125,4 +125,8 @@ public class TodoService {
 	public List<TodoEntity> findByStatusAndTitle(Integer status, String title) {
 		return todoRepository.findByStatusAndTitle(status, title);
 	}
+	
+	public void updateTodoTitle(Long id, String title) {
+		todoRepository.updateTodoTitle(title, id);
+	}
 }

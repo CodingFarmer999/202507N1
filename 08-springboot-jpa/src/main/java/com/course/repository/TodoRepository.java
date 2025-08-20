@@ -4,9 +4,11 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.course.entity.TodoEntity;
 
@@ -41,5 +43,10 @@ public interface TodoRepository extends JpaRepository<TodoEntity, Long> {
 	
 	@Query("select t from TodoEntity t where t.status = :st and t.title = :tt ")
 	List<TodoEntity> findByStatusAndTitle(@Param("st") Integer status, @Param("tt") String title);
+	
+	@Transactional
+	@Modifying
+	@Query(nativeQuery = true, value = "update todo set title = ? where id = ? ")
+	void updateTodoTitle(String title, Long id);
 	
 }

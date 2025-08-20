@@ -3,6 +3,7 @@ package com.course.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -87,5 +88,12 @@ public class TodoController {
 	@GetMapping("/todo-query2/{status}/{title}")
 	public List<TodoEntity> getTodoStatusAndTitle(@PathVariable Integer status, @PathVariable String title) {
 		return todoService.findByStatusAndTitle(status, title);
+	}
+	
+	@Operation(summary = "修改待辦事項標題(updateTodoTitle)", tags = "@Query")
+	@PostMapping("/todo-title-update/{id}/{title}")
+	public ResponseEntity<String> updateTodoTitle(@PathVariable Long id, @PathVariable String title) {
+		todoService.updateTodoTitle(id, title);
+		return ResponseEntity.ok("OK");
 	}
 }
