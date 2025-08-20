@@ -121,4 +121,8 @@ public class TodoService {
 		// return todoRepository.findByCondition("%" + title + "%");
 		return todoRepository.findByConditionNative("%" + title + "%");
 	}
+	
+	public List<TodoEntity> findByStatusAndTitle(Integer status, String title) {
+		return todoRepository.findByStatusAndTitle(status, title);
+	}
 }

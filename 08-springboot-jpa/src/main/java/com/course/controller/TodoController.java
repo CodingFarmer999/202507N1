@@ -82,4 +82,10 @@ public class TodoController {
 	public List<TodoEntity> getTodoByCondition(@PathVariable String title) {
 		return todoService.getTodoByTitleQuery(title);
 	}
+	
+	@Operation(summary = "取得待辦事項(findByStatusAndTitle)", tags = "@Query")
+	@GetMapping("/todo-query2/{status}/{title}")
+	public List<TodoEntity> getTodoStatusAndTitle(@PathVariable Integer status, @PathVariable String title) {
+		return todoService.findByStatusAndTitle(status, title);
+	}
 }
