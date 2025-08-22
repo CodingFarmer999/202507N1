@@ -24,9 +24,11 @@ public class ProductService {
 	 */
 	public void addProduct(ProductVo vo) {
 
-		ProductEntity productEntity = new ProductEntity();
-		productRepository.save(null);
 		// 新增 Product 資料
+		ProductEntity productEntity = new ProductEntity();
+		productEntity.setCode(vo.getCode());
+		productEntity.setName(vo.getName());
+		productRepository.save(productEntity);
 		
 		// 新增 ProductPrice 資料
 		
