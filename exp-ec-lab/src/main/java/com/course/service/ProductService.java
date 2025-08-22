@@ -24,6 +24,25 @@ public class ProductService {
 	@Autowired
 	private ProductPriceRepository productPriceRepository;
 	
+	@Transactional
+	public void addProductForEach(ProductVo vo) {
+
+		// 新增 Product 資料
+		ProductEntity productEntity = new ProductEntity();
+		productEntity.setCode(vo.getCode());
+		productEntity.setName(vo.getName());
+		productEntity = productRepository.save(productEntity);
+		
+		// 新增 ProductPrice 資料
+		ProductPriceEntity priceEntity = new ProductPriceEntity();
+		priceEntity.setListPrice(vo.getListPrice());
+		priceEntity.setSalesPrice(vo.getSalesPrice());
+		priceEntity.setProductId(productEntity.getId());
+		productEntity.setPriceEntity(priceEntity);
+
+		productPriceRepository.save(priceEntity);
+	}
+	
 	/**
 	 * 新增商品
 	 * @param vo
