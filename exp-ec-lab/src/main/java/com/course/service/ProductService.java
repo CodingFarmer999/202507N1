@@ -1,6 +1,5 @@
 package com.course.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.course.dto.ProductDto;
+import com.course.entity.CategoryEntity;
 import com.course.entity.ProductEntity;
 import com.course.entity.ProductPriceEntity;
 import com.course.entity.ProductReviewEntity;
@@ -99,6 +99,12 @@ public class ProductService {
 //					memos.add(review.getMemo());
 //				}
 				vo.setMemos(memos);
+			}
+			
+			if (product.getCategoryList() != null && product.getCategoryList().size() > 0) {
+				List<CategoryEntity> categoryList = product.getCategoryList();
+				List<String> names = categoryList.stream().map(CategoryEntity::getName).collect(Collectors.toList());
+				vo.setCategories(names);
 			}
 
 			

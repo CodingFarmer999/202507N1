@@ -7,6 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
@@ -45,4 +48,11 @@ public class ProductEntity {
 	
 	// 與 Product Category 的關聯(一個商品可以有多個分類、一個分類也會有多個商品) ManyToMany
 	// iPhone -> 3C, 手機 , 3C -> iPhone, 平板
+    @ManyToMany
+    @JoinTable(
+            name = "PRODUCT_CATEGORY", 
+            joinColumns = @JoinColumn(name = "PRODUCT_ID"), 
+            inverseJoinColumns = @JoinColumn(name = "CATEGORY_ID")
+        )
+    List<CategoryEntity> categoryList;
 }
