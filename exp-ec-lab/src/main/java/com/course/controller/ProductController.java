@@ -39,6 +39,13 @@ public class ProductController {
 		return ResponseEntity.ok().body(productList);
 	}
 	
+	@Operation(summary = "取得所有商品(從Price)", tags = "商品")
+	@GetMapping("/products-price")
+	public ResponseEntity<List<ProductVo>> getAllProductForPrice() {
+		List<ProductVo> productList = productService.getAllProductForPrice();
+		return ResponseEntity.ok().body(productList);
+	}
+	
 	@Operation(summary = "依ID取得商品", tags = "商品")
 	@GetMapping("/product/{id}")
 	public ResponseEntity<ProductVo> getProductById(@PathVariable Long id) {

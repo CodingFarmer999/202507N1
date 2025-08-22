@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -22,11 +24,15 @@ public class ProductPriceEntity {
 	private Long id;
 	
 	@Column
-	private Long productId;
-	
-	@Column
 	private BigDecimal listPrice;
 	
 	@Column
 	private BigDecimal salesPrice;
+	
+//	@Column
+//	private Long productId;
+	
+    @OneToOne
+    @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID")
+    private ProductEntity product;
 }
