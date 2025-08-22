@@ -39,6 +39,11 @@ public class ProductService {
 		
 	}
 	
+	public List<ProductEntity> getAllProductReturnEntity() {
+		// 取得所有商品
+		return productRepository.findAll();
+	}
+	
 	/**
 	 * 取得所有商品
 	 * @return

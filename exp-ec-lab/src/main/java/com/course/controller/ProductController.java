@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.course.dto.ProductDto;
+import com.course.entity.ProductEntity;
 import com.course.service.ProductService;
 import com.course.vo.ProductQueryParam;
 import com.course.vo.ProductVo;
@@ -30,6 +31,12 @@ public class ProductController {
 	public ResponseEntity<String> addProduct(@RequestBody ProductVo vo) {
 		productService.addProduct(vo);
 		return ResponseEntity.ok().body("OK");
+	}
+	
+	@Operation(summary = "取得所有商品(回傳Entity)", tags = "商品")
+	@GetMapping("/products-entity")
+	public List<ProductEntity> getAllProductReturnEntity() {
+		return productService.getAllProductReturnEntity();
 	}
 	
 	@Operation(summary = "取得所有商品", tags = "商品")
