@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.course.dto.ProductDto;
 import com.course.entity.ProductEntity;
+import com.course.entity.ProductPriceEntity;
 import com.course.repository.ProductRepository;
 import com.course.vo.ProductQueryParam;
 import com.course.vo.ProductVo;
@@ -40,14 +41,18 @@ public class ProductService {
 	 */
 	public List<ProductVo> getAllProduct() {
 		// 取得所有商品
-		List<ProductEntity> productList = null;
+		List<ProductEntity> productList = productRepository.findAll();
 		
 		return productList.stream().map(product -> {
 			ProductVo vo = new ProductVo();
 			// 取得 Entity 欄位資料，並放到 Vo 當中
 
+			vo.setCode(product.getCode());
+			vo.setName(product.getName());
 			// 取得 Price 資料
-			
+			ProductPriceEntity priceEntity = product.getPriceEntity();
+			vo.setListPrice(priceEntity.getListPrice());
+			vo.setSalesPrice(priceEntity.getSalesPrice());
 			return vo;
 		}).collect(Collectors.toList());
 	}
