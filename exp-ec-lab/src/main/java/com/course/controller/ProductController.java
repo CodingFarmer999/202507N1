@@ -22,7 +22,7 @@ import io.swagger.v3.oas.annotations.Operation;
 @RequestMapping("/ec")
 public class ProductController {
 
-	@Autowired
+	// @Autowired
 	private ProductService productService;
 	
 	@Operation(summary = "新增商品", tags = "商品")
