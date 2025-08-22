@@ -1,5 +1,6 @@
 package com.course.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.course.dto.ProductDto;
 import com.course.entity.ProductEntity;
 import com.course.entity.ProductPriceEntity;
+import com.course.entity.ProductReviewEntity;
 import com.course.repository.ProductPriceRepository;
 import com.course.repository.ProductRepository;
 import com.course.vo.ProductQueryParam;
@@ -37,7 +39,7 @@ public class ProductService {
 		ProductPriceEntity priceEntity = new ProductPriceEntity();
 		priceEntity.setListPrice(vo.getListPrice());
 		priceEntity.setSalesPrice(vo.getSalesPrice());
-		priceEntity.setProductId(productEntity.getId());
+		// priceEntity.setProductId(productEntity.getId());
 
 		productPriceRepository.save(priceEntity);
 	}
@@ -89,6 +91,17 @@ public class ProductService {
 			ProductPriceEntity priceEntity = product.getPriceEntity();
 			vo.setListPrice(priceEntity.getListPrice());
 			vo.setSalesPrice(priceEntity.getSalesPrice());
+			if (product.getReviews() != null && product.getReviews().size() > 0) {
+				List<ProductReviewEntity> reviews = product.getReviews();
+				List<String> memos = reviews.stream().map(ProductReviewEntity::getMemo).collect(Collectors.toList());
+//				List<String> memos = new ArrayList<>();
+//				for (ProductReviewEntity review : reviews) {
+//					memos.add(review.getMemo());
+//				}
+				vo.setMemos(memos);
+			}
+
+			
 			return vo;
 		}).collect(Collectors.toList());
 	}
