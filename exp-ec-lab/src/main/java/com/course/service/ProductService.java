@@ -5,21 +5,18 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
 
 import com.course.dto.ProductDto;
-import com.course.entity.CategoryEntity;
 import com.course.entity.ProductEntity;
-import com.course.entity.ProductPriceEntity;
-import com.course.entity.ProductReviewEntity;
-import com.course.repository.ProductCustomRepository;
-import com.course.repository.ProductPriceRepository;
 import com.course.repository.ProductRepository;
 import com.course.vo.ProductQueryParam;
 import com.course.vo.ProductVo;
 
+@Service
 public class ProductService {
+	
+	@Autowired
+	private ProductRepository productRepository;
 	
 	/**
 	 * 新增商品
@@ -27,6 +24,8 @@ public class ProductService {
 	 */
 	public void addProduct(ProductVo vo) {
 
+		ProductEntity productEntity = new ProductEntity();
+		productRepository.save(null);
 		// 新增 Product 資料
 		
 		// 新增 ProductPrice 資料
