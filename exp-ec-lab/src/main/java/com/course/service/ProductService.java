@@ -38,7 +38,6 @@ public class ProductService {
 		priceEntity.setListPrice(vo.getListPrice());
 		priceEntity.setSalesPrice(vo.getSalesPrice());
 		priceEntity.setProductId(productEntity.getId());
-		productEntity.setPriceEntity(priceEntity);
 
 		productPriceRepository.save(priceEntity);
 	}
