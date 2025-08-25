@@ -168,7 +168,7 @@ public class ProductService {
 	 * @return
 	 */
 	public List<ProductDto> getProductByCondition(ProductQueryParam queryParam) {
-		return null;
+		return customRepository.findByCondition(queryParam);
 	}
 	
 }

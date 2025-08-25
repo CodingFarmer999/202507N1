@@ -48,6 +48,14 @@ public class ProductDto {
 		this.memo = memo;
 	}
 	
+	public ProductDto(String code, String name, BigDecimal listPrice, BigDecimal salesPrice) {
+		super();
+		this.code = code;
+		this.name = name;
+		this.listPrice = listPrice;
+		this.salesPrice = salesPrice;
+	}
+	
 	public ProductDto(String code, String name, BigDecimal listPrice, BigDecimal salesPrice, String memo) {
 		super();
 		this.code = code;
