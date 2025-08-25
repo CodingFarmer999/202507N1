@@ -24,6 +24,7 @@ public class ProductCustomRepository {
 		// JOIN 其他
 		String sql = """
 				SELECT
+				P.ID,
 				P.CODE,
 				P.NAME,
 				R.LIST_PRICE,
@@ -34,7 +35,10 @@ public class ProductCustomRepository {
 				LEFT JOIN PRODUCT_REVIEW V ON V.PRODUCT_ID = P.ID
 			""";
 		
-		Query query = entityManager.createNativeQuery(sql, ProductDto.class);
+		// Query query = entityManager.createNativeQuery(sql, ProductDto.class);
+		
+		// ProductDtoMapping
+		Query query = entityManager.createNativeQuery(sql, "ProductDtoMapping");
 		return query.getResultList();
 	}
 }
