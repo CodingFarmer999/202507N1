@@ -18,6 +18,7 @@ import com.course.vo.ProductQueryParam;
 import com.course.vo.ProductVo;
 
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/ec")
@@ -28,7 +29,7 @@ public class ProductController {
 	
 	@Operation(summary = "新增商品", tags = "商品")
 	@PostMapping("/product")
-	public ResponseEntity<String> addProduct(@RequestBody ProductVo vo) {
+	public ResponseEntity<String> addProduct(@Valid @RequestBody ProductVo vo) {
 		productService.addProduct(vo);
 		return ResponseEntity.ok().body("OK");
 	}

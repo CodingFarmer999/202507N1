@@ -3,8 +3,11 @@ package com.course.vo;
 import java.math.BigDecimal;
 import java.util.List;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class ProductVo {
 
+	@NotBlank
 	private String code;
 	
 	private String name;

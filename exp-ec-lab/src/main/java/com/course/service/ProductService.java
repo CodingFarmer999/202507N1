@@ -1,5 +1,6 @@
 package com.course.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -168,6 +169,10 @@ public class ProductService {
 	 * @return
 	 */
 	public List<ProductDto> getProductByCondition(ProductQueryParam queryParam) {
+		BigDecimal min = queryParam.getMinPrice();
+		BigDecimal total = new BigDecimal("10000");
+		total = total.add(min);
+		
 		return customRepository.findByCondition(queryParam);
 	}
 	
