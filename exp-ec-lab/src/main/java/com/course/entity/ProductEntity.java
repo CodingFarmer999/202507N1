@@ -1,8 +1,13 @@
 package com.course.entity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
+import com.course.dto.ProductDto;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.ColumnResult;
+import jakarta.persistence.ConstructorResult;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,9 +18,24 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.SqlResultSetMapping;
 import jakarta.persistence.Table;
 import lombok.Data;
 
+//@SqlResultSetMapping(
+//	    name = "ProductDtoMapping",
+//	    classes = @ConstructorResult(
+//	        targetClass = ProductDto.class,
+//	        columns = {
+//        		@ColumnResult(name = "ID", type = Long.class),
+//        		@ColumnResult(name = "CODE", type = String.class),
+//	            @ColumnResult(name = "NAME", type = String.class),
+//	            @ColumnResult(name = "LIST_PRICE", type = BigDecimal.class),
+//	            @ColumnResult(name = "SALES_PRICE", type = BigDecimal.class),
+//	            @ColumnResult(name = "MEMO", type = String.class)
+//	        }
+//	    )
+//	)
 @Entity
 @Table(name = "PRODUCT")
 @Data
