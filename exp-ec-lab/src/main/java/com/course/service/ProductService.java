@@ -12,6 +12,7 @@ import com.course.entity.CategoryEntity;
 import com.course.entity.ProductEntity;
 import com.course.entity.ProductPriceEntity;
 import com.course.entity.ProductReviewEntity;
+import com.course.repository.ProductCustomRepository;
 import com.course.repository.ProductPriceRepository;
 import com.course.repository.ProductRepository;
 import com.course.vo.ProductQueryParam;
@@ -25,6 +26,8 @@ public class ProductService {
 	
 	@Autowired
 	private ProductPriceRepository productPriceRepository;
+	
+	private ProductCustomRepository customRepository;
 	
 	@Transactional
 	public void addProductForEach(ProductVo vo) {
@@ -156,7 +159,7 @@ public class ProductService {
 	 * @return
 	 */
 	public List<ProductDto> getAllProductData() {
-		return null;
+		return customRepository.findAllProduct();
 	}
 	
 	/**
