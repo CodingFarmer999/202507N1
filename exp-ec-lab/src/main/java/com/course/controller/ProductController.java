@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.course.dto.ProductDto;
 import com.course.entity.ProductEntity;
+import com.course.model.ApiResponse;
 import com.course.service.ProductService;
 import com.course.vo.ProductQueryParam;
 import com.course.vo.ProductVo;
@@ -66,6 +67,13 @@ public class ProductController {
 	public ResponseEntity<List<ProductDto>> getAllProductData() {
 		List<ProductDto> productList = productService.getAllProductData();
 		return ResponseEntity.ok().body(productList);
+	}
+	
+	@Operation(summary = "取得所有商品(EntityManager)-apiResponse", tags = "商品")
+	@GetMapping("/products3")
+	public ApiResponse<List<ProductDto>> getAllProductDataApiResponse() {
+		List<ProductDto> productList = productService.getAllProductData();
+		return ApiResponse.success(productList);
 	}
 	
 	@Operation(summary = "依條件取得商品(EntityManager)", tags = "商品")
