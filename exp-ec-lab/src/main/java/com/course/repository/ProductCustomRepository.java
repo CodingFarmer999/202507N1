@@ -24,7 +24,11 @@ public class ProductCustomRepository {
 		// JOIN 其他
 		String sql = """
 				SELECT
-				* 
+				P.CODE,
+				P.NAME,
+				R.LIST_PRICE,
+				R.SALES_PRICE,
+				V.MEMO 
 				FROM PRODUCT P
 				JOIN PRODUCT_PRICE R ON R.PRODUCT_ID = P.ID
 				LEFT JOIN PRODUCT_REVIEW V ON V.PRODUCT_ID = P.ID

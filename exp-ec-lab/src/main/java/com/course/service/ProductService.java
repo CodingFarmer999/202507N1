@@ -27,6 +27,7 @@ public class ProductService {
 	@Autowired
 	private ProductPriceRepository productPriceRepository;
 	
+	@Autowired
 	private ProductCustomRepository customRepository;
 	
 	@Transactional
