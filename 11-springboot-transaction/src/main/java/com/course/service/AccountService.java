@@ -20,9 +20,12 @@ public class AccountService {
 	
 	@Autowired
 	private AccountRepository accountRepository;
+	@Autowired
+	private AccountTransaction accountTransaction;
 
 	// 所有異常都需要 Rollback(預設只有RuntimeException會Rollbackk)
-	@Transactional(rollbackFor = {Exception.class}, timeout = 10000)
+//	@Transactional(rollbackFor = {Exception.class}, timeout = 10)
+	@Transactional(rollbackFor = { Exception.class }, timeout = 5)
 	public Account transferMoney(String payerAccountNo, String payeeAccountNo, BigDecimal amount) throws Exception {
 		Account payerAccount = accountRepository.findByAccountNo(payerAccountNo);
 		
@@ -70,7 +73,8 @@ public class AccountService {
 		}
 		if (payerAccount.getBalance().compareTo(amount) >= 0) {
 			// 內部方法調用，不會觸發交易機制
-			innerTransferMethod(payerAccount, payeeAccount, amount);
+//			innerTransferMethod(payerAccount, payeeAccount, amount);
+			accountTransaction.innerTransferMethod(payerAccount, payeeAccount, amount);
 		} else {
 			logger.info("餘額不足：" + payerAccountNo);
 			throw new ActionException("餘額不足");
@@ -79,18 +83,18 @@ public class AccountService {
 		return payerAccount;
 	}
 
-	@Transactional
-	public Account innerTransferMethod(Account payerAccount, Account payeeAccount, BigDecimal amount) throws Exception {
-
-		payerAccount.setBalance(payerAccount.getBalance().subtract(amount));
-		accountRepository.save(payerAccount);
-
-		// 觸發 RuntimeException
-		// Integer.parseInt("abc");
-		payeeAccount.setBalance(payeeAccount.getBalance().add(amount));
-		accountRepository.save(payeeAccount);
-
-		return payerAccount;
-	}
+//	@Transactional
+//	public Account innerTransferMethod(Account payerAccount, Account payeeAccount, BigDecimal amount) throws Exception {
+//
+//		payerAccount.setBalance(payerAccount.getBalance().subtract(amount));
+//		accountRepository.save(payerAccount);
+//
+//		// 觸發 RuntimeException
+//		// Integer.parseInt("abc");
+//		payeeAccount.setBalance(payeeAccount.getBalance().add(amount));
+//		accountRepository.save(payeeAccount);
+//
+//		return payerAccount;
+//	}
 	
 }
