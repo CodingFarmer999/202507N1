@@ -176,4 +176,22 @@ public class ProductService {
 		return customRepository.findByCondition(queryParam);
 	}
 	
+
+	/**
+	 * 取得所有商品
+	 * @return
+	 */
+	public List<ProductVo> getAllProductQuery() {
+		// 取得所有商品
+		List<ProductDto> productList = productRepository.findByQuery();
+		
+		return productList.stream().map(product -> {
+			ProductVo vo = new ProductVo();
+			// 取得 Entity 欄位資料，並放到 Vo 當中
+			vo.setCode(product.getCode());
+			vo.setName(product.getName());
+			return vo;
+		}).collect(Collectors.toList());
+	}
+	
 }
