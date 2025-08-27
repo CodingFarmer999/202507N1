@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
 	Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
 	@ExceptionHandler(value = MethodArgumentNotValidException.class)
-	public ApiResponse<Map<String, String>> excepcionHandler(MethodArgumentNotValidException e) {
+	public ApiResponse<Map<String, String>> exceptionHandler(MethodArgumentNotValidException e) {
 		
 		logger.error("出事了!!!!", e);
 		
@@ -36,4 +36,15 @@ public class GlobalExceptionHandler {
 
         return response;
 	}
+	
+	@ExceptionHandler(value = Exception.class)
+	public ApiResponse<Map<String, String>> allExceptionHandler(Exception e) {
+		
+        // 回傳自訂格式的錯誤回應（HTTP 200，responseCode 代表錯誤）
+        ApiResponse<Map<String, String>> response = ApiResponse.error("505", "系統忙碌中", null);
+
+        return response;
+	}
+	
+	
 }

@@ -100,7 +100,7 @@ public class ProductController {
 		try {
 			FileInputStream fis = new FileInputStream("abc.jpg");
 		} catch (FileNotFoundException e) {
-			throw new ActionException("檔案不存在", e);
+			throw new ActionException("506", "檔案不存在", e);
 		}
 
 	}
