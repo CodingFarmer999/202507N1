@@ -83,4 +83,11 @@ public class ProductController {
 		return ResponseEntity.ok().body(productList);
 	}
 	
+	@Operation(summary = "取得所有商品(部分欄位)", tags = "商品")
+	@GetMapping("/products-query")
+	public ResponseEntity<List<ProductVo>> getAllProductQuery() {
+		List<ProductVo> productList = productService.getAllProductQuery();
+		return ResponseEntity.ok().body(productList);
+	}
+	
 }
