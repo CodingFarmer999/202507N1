@@ -1,6 +1,9 @@
 package com.course.aspect;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -23,5 +26,18 @@ public class EcAspect {
 	@Before("pointCutMethod()")
 	public void beforeAdvice(JoinPoint joinPoint) {
 		logger.info("@Before: " + joinPoint.getSignature().getName());
+	}
+	
+	@After("pointCutMethod()")
+	public void afterAdvice(JoinPoint joinPoint) {
+		logger.info("@After: " + joinPoint.getSignature().getName());
+	}
+	
+	@Around("pointCutMethod()")
+	public Object aroundAdvice(ProceedingJoinPoint pjp) throws Throwable {
+		logger.info("@Around 前: " + pjp.getSignature().getName());
+		Object obj = pjp.proceed();
+		logger.info("@Around 後: " + pjp.getSignature().getName());
+		return obj;
 	}
 }
