@@ -67,4 +67,14 @@ public class EcAspect {
 	public void afterThrowingAdvice(JoinPoint joinPoint, Throwable ex) {
 		logger.info("@@@AfterThrowing: " + joinPoint.getSignature().getName());
 	}
+	
+	@Pointcut("within(com.course.controller..*)")
+	public void pointCutWithIn() {
+	    // 透由@Pointcut定義切點，方法內容維持空方法
+	}
+	
+	@Before("pointCutWithIn()")
+	public void beforeWithInAdvice(JoinPoint joinPoint) {
+		logger.info("@Before WithIn: " + joinPoint.getSignature().getName());
+	}
 }
