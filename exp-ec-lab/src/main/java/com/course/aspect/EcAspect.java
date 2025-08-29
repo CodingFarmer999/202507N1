@@ -5,6 +5,7 @@ import java.util.List;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -49,12 +50,15 @@ public class EcAspect {
 				ProductVo vo = (ProductVo)resultList.get(0);
 				vo.setName(vo.getName() + "!!!!!");
 			}
-			
 		}
 		
-
 		Long end = System.currentTimeMillis();
 		logger.info("@Around 後: 執行時間 "+ (end - start)  + "ms");
 		return obj;
+	}
+	
+	@AfterReturning(value = "pointCutMethod()", returning = "re2")
+	public void afterReturnAdvice(JoinPoint joinPoint, Object re2) {
+		logger.info("@@AfterReturning: " + joinPoint.getSignature().getName());
 	}
 }
