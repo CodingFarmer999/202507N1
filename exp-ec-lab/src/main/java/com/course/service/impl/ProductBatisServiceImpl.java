@@ -1,6 +1,7 @@
 package com.course.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,8 +39,13 @@ public class ProductBatisServiceImpl implements ProductService {
 
 	@Override
 	public List<ProductVo> getAllProduct() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ProductDto> dtos = productMapper.findAll();
+		return dtos.stream().map(dto -> {
+			ProductVo vo = new ProductVo();
+			vo.setCode(dto.getCode());
+			vo.setName(dto.getName());
+			return vo;
+		}).collect(Collectors.toList());
 	}
 
 	@Override
