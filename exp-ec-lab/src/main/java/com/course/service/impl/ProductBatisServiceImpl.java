@@ -1,5 +1,6 @@
 package com.course.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,9 +53,26 @@ public class ProductBatisServiceImpl implements ProductService {
 //		}
 		
 		
+		
 		// reviews
 		// Key: product, Value: Memos
 		Map<Long, List<String>> memoMap = new HashMap<>();
+		
+		List<ProductDto> reviews = productMapper.findAllReview();
+
+		for (ProductDto d : reviews) {
+			Long id = d.getId();
+			if (memoMap.containsKey(id)) {
+				List<String> ms = memoMap.get(id);
+				ms.add(d.getMemo());
+			} else {
+				List<String> m = new ArrayList<>();
+				m.add(d.getMemo());
+				memoMap.put(id, m);
+			}
+		}
+		
+
 		
 		return dtos.stream().map(dto -> {
 			ProductVo vo = new ProductVo();
@@ -63,9 +81,10 @@ public class ProductBatisServiceImpl implements ProductService {
 			vo.setListPrice(dto.getListPrice());
 			vo.setSalesPrice(dto.getSalesPrice());
 
-			List<ProductDto> views = productMapper.findReviewById(dto.getId());
-			List<String> memos = views.stream().map(ProductDto::getMemo).collect(Collectors.toList());
-			vo.setMemos(memos);
+			//List<ProductDto> views = productMapper.findReviewById(dto.getId());
+			//List<String> memos = views.stream().map(ProductDto::getMemo).collect(Collectors.toList());
+			
+			vo.setMemos(memoMap.get(dto.getId()));
 			return vo;
 		}).collect(Collectors.toList());
 	}

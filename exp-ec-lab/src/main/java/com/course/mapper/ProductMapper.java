@@ -23,4 +23,7 @@ public interface ProductMapper {
 	
 	@Select("SELECT * FROM PRODUCT_REVIEW V WHERE V.PRODUCT_ID = #{id}")
 	public List<ProductDto> findReviewById(Long id);
+	
+	@Select("SELECT * FROM PRODUCT_REVIEW V")
+	public List<ProductDto> findAllReview();
 }
