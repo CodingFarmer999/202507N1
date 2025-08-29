@@ -1,5 +1,7 @@
 package com.course.aspect;
 
+import java.util.List;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -10,6 +12,8 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import com.course.vo.ProductVo;
 
 @Component
 @Aspect
@@ -39,6 +43,15 @@ public class EcAspect {
 		Long start = System.currentTimeMillis();
 		
 		Object obj = pjp.proceed();
+		if (obj instanceof List<?>) {
+			List<?> resultList = (List<?>) obj;
+			if (resultList != null && resultList.get(0) instanceof ProductVo) {
+				ProductVo vo = (ProductVo)resultList.get(0);
+				vo.setName(vo.getName() + "!!!!!");
+			}
+			
+		}
+		
 
 		Long end = System.currentTimeMillis();
 		logger.info("@Around 後: 執行時間 "+ (end - start)  + "ms");
