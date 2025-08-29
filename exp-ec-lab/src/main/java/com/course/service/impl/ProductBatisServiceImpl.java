@@ -94,4 +94,13 @@ public class ProductBatisServiceImpl implements ProductService {
 		return null;
 	}
 
+	public ProductVo getProductByCode(String code) {
+		List<ProductDto> dtos = productMapper.findByCode(code);
+		ProductDto dto = dtos.get(0);
+		ProductVo vo = new ProductVo();
+		vo.setCode(dto.getCode());
+		vo.setName(dto.getName());
+
+		return vo;
+	}
 }

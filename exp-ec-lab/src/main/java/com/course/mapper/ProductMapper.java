@@ -13,6 +13,11 @@ public interface ProductMapper {
 	@Select("SELECT * FROM PRODUCT P JOIN PRODUCT_PRICE R ON R.PRODUCT_ID = P.ID")
 	public List<ProductDto> findAll();
 	
-	@Select("SELECT * FROM PRODUCT P WHERE P.ID = #{id}")
+	@Select("SELECT * FROM PRODUCT P JOIN PRODUCT_PRICE R ON R.PRODUCT_ID = P.ID WHERE P.ID = #{id}")
 	public ProductDto findById(Long id);
+	
+	@Select("SELECT * FROM PRODUCT P WHERE P.CODE = #{code}")
+	public List<ProductDto> findByCode(String code);
+	
+	// SELECT PRODUCT_REVIEW BY id
 }
