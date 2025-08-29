@@ -36,8 +36,12 @@ public class EcAspect {
 	@Around("pointCutMethod()")
 	public Object aroundAdvice(ProceedingJoinPoint pjp) throws Throwable {
 		logger.info("@Around 前: " + pjp.getSignature().getName());
+		Long start = System.currentTimeMillis();
+		
 		Object obj = pjp.proceed();
-		logger.info("@Around 後: " + pjp.getSignature().getName());
+
+		Long end = System.currentTimeMillis();
+		logger.info("@Around 後: 執行時間 "+ (end - start)  + "ms");
 		return obj;
 	}
 }
