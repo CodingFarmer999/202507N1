@@ -1,5 +1,6 @@
 package com.course.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,6 +41,15 @@ public class ProductBatisServiceImpl implements ProductService {
 	@Override
 	public List<ProductVo> getAllProduct() {
 		List<ProductDto> dtos = productMapper.findAll();
+		
+//		List<ProductVo> voList = new ArrayList<>();
+//		for (ProductDto dto : dtos) {
+//			ProductVo vo = new ProductVo();
+//			vo.setCode(dto.getCode());
+//			vo.setName(dto.getName());
+//			voList.add(vo);
+//		}
+		
 		return dtos.stream().map(dto -> {
 			ProductVo vo = new ProductVo();
 			vo.setCode(dto.getCode());
