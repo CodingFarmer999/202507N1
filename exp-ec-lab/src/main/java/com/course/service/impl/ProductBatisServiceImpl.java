@@ -1,7 +1,8 @@
 package com.course.service.impl;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,12 +51,21 @@ public class ProductBatisServiceImpl implements ProductService {
 //			voList.add(vo);
 //		}
 		
+		
+		// reviews
+		// Key: product, Value: Memos
+		Map<Long, List<String>> memoMap = new HashMap<>();
+		
 		return dtos.stream().map(dto -> {
 			ProductVo vo = new ProductVo();
 			vo.setCode(dto.getCode());
 			vo.setName(dto.getName());
 			vo.setListPrice(dto.getListPrice());
 			vo.setSalesPrice(dto.getSalesPrice());
+
+			List<ProductDto> views = productMapper.findReviewById(dto.getId());
+			List<String> memos = views.stream().map(ProductDto::getMemo).collect(Collectors.toList());
+			vo.setMemos(memos);
 			return vo;
 		}).collect(Collectors.toList());
 	}

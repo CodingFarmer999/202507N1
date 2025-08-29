@@ -20,4 +20,7 @@ public interface ProductMapper {
 	public List<ProductDto> findByCode(String code);
 	
 	// SELECT PRODUCT_REVIEW BY id
+	
+	@Select("SELECT * FROM PRODUCT_REVIEW V WHERE V.PRODUCT_ID = #{id}")
+	public List<ProductDto> findReviewById(Long id);
 }
