@@ -86,6 +86,7 @@ public class ProductService {
 		// 取得所有商品
 		List<ProductEntity> productList = productRepository.findAll();
 		
+		// Integer.parseInt("ABC");
 		return productList.stream().map(product -> {
 			ProductVo vo = new ProductVo();
 			// 取得 Entity 欄位資料，並放到 Vo 當中

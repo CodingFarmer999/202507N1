@@ -6,6 +6,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -60,5 +61,10 @@ public class EcAspect {
 	@AfterReturning(value = "pointCutMethod()", returning = "re2")
 	public void afterReturnAdvice(JoinPoint joinPoint, Object re2) {
 		logger.info("@@AfterReturning: " + joinPoint.getSignature().getName());
+	}
+	
+	@AfterThrowing(value = "pointCutMethod()", throwing = "ex")
+	public void afterThrowingAdvice(JoinPoint joinPoint, Throwable ex) {
+		logger.info("@@@AfterThrowing: " + joinPoint.getSignature().getName());
 	}
 }
