@@ -19,3 +19,6 @@ logging:
     com.course: trace
   file:
     path: C:\Users\student\log
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

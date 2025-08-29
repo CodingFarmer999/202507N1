@@ -54,6 +54,8 @@ public class ProductBatisServiceImpl implements ProductService {
 			ProductVo vo = new ProductVo();
 			vo.setCode(dto.getCode());
 			vo.setName(dto.getName());
+			vo.setListPrice(dto.getListPrice());
+			vo.setSalesPrice(dto.getSalesPrice());
 			return vo;
 		}).collect(Collectors.toList());
 	}
