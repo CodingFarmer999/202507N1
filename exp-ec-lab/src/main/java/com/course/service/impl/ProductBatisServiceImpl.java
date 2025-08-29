@@ -2,14 +2,22 @@ package com.course.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.course.dto.ProductDto;
 import com.course.entity.ProductEntity;
+import com.course.mapper.ProductMapper;
 import com.course.service.ProductService;
 import com.course.vo.ProductQueryParam;
 import com.course.vo.ProductVo;
 
+@Service
 public class ProductBatisServiceImpl implements ProductService {
 
+	@Autowired
+	private ProductMapper productMapper;
+	
 	@Override
 	public void addProductForEach(ProductVo vo) {
 		// TODO Auto-generated method stub
