@@ -68,8 +68,12 @@ public class ProductBatisServiceImpl implements ProductService {
 
 	@Override
 	public ProductVo getProductById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		ProductDto dto = productMapper.findById(id);
+		ProductVo vo = new ProductVo();
+		vo.setCode(dto.getCode());
+		vo.setName(dto.getName());
+
+		return vo;
 	}
 
 	@Override
