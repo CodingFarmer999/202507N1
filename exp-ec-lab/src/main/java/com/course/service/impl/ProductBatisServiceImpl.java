@@ -61,7 +61,7 @@ public class ProductBatisServiceImpl implements ProductService {
 		List<ProductDto> reviews = productMapper.findAllReview();
 
 		for (ProductDto d : reviews) {
-			Long id = d.getId();
+			Long id = d.getProductId();
 			if (memoMap.containsKey(id)) {
 				List<String> ms = memoMap.get(id);
 				ms.add(d.getMemo());
