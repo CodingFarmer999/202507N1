@@ -21,6 +21,14 @@
 			<if test="productName != null and productName != '' ">
 				AND P.NAME = #{productName}
 			</if>
+			
+			<if test="minPrice != null">
+				AND R.SALES_PRICE &gt;= #{minPrice}
+			</if>
+			
+			<if test="maxPrice != null">
+				AND R.SALES_PRICE &lt;= #{maxPrice}
+			</if>
 		
 		</where>
 	</select>
