@@ -32,6 +32,6 @@ public interface ProductMapper {
 	@Insert("INSERT INTO PRODUCT (ID, CODE, NAME) VALUES (PRODUCT_SEQ.nextval, #{code}, #{name}) ")
 	public void insertProduct(String code, String name);
 	
-//	@Insert("INSERT INTO PRODUCT_PRICE (ID, PRODUCT_ID, LIST_PRICE, SALES_PRICE) VALUES (PRODUCT_PRICE_SEQ.nextval, #{productId}, #{listPrice}, #{salesPrice}) ")
-//	public void insertPrice(Long productId, BigDecimal listPrice, BigDecimal salesPrice);r
+	@Insert("INSERT INTO PRODUCT_PRICE (ID, PRODUCT_ID, LIST_PRICE, SALES_PRICE) VALUES (PRODUCT_PRICE_SEQ.nextval, #{productId}, #{listPrice}, #{salesPrice}) ")
+	public void insertPrice(Long productId, BigDecimal listPrice, BigDecimal salesPrice);
 }
