@@ -52,27 +52,24 @@ public class ProductBatisServiceImpl implements ProductService {
 //			voList.add(vo);
 //		}
 		
-		
-		
-		// reviews
-		// Key: product, Value: Memos
+
 		Map<Long, List<String>> memoMap = new HashMap<>();
 		
+		// 先撈出所有的評論資料，再將資料依照 productId 分組
 		List<ProductDto> reviews = productMapper.findAllReview();
 
-		for (ProductDto d : reviews) {
-			Long id = d.getProductId();
+		// 將資料群組為 Map，Key: productId, Value: List<Memo>
+		for (ProductDto reviewData : reviews) {
+			Long id = reviewData.getProductId();
 			if (memoMap.containsKey(id)) {
-				List<String> ms = memoMap.get(id);
-				ms.add(d.getMemo());
+				List<String> existMemoList = memoMap.get(id);
+				existMemoList.add(reviewData.getMemo());
 			} else {
-				List<String> m = new ArrayList<>();
-				m.add(d.getMemo());
-				memoMap.put(id, m);
+				List<String> tempMemoList = new ArrayList<>();
+				tempMemoList.add(reviewData.getMemo());
+				memoMap.put(id, tempMemoList);
 			}
 		}
-		
-
 		
 		return dtos.stream().map(dto -> {
 			ProductVo vo = new ProductVo();
