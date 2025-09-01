@@ -1,5 +1,6 @@
 package com.course.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 //@SqlResultSetMapping(
@@ -17,9 +18,11 @@ import java.math.BigDecimal;
 //	    )
 //	)
 //@Entity
-public class ProductDto {
+public class ProductDto implements Serializable {
 
-//	@Id
+private static final long serialVersionUID = 1L;
+
+	//	@Id
 	private Long id;
 	
 	private String code;

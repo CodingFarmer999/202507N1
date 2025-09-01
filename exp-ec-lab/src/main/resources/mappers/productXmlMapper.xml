@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.course.mapper.ProductMapper">
+	<cache/>
 <!-- 	<select id="findByCodeXml" resultType="com.course.dto.ProductDto"> -->
 <!-- 		SELECT * FROM PRODUCT P WHERE CODE = #{CODE} -->
 <!-- 	</select> -->
-	<select id="findByCodeXml" resultType="productDto">
+	<select id="findByCodeXml" resultType="productDto" useCache="false">
 		SELECT * FROM PRODUCT P 
 		<where>
 			AND CODE = #{CODE}
