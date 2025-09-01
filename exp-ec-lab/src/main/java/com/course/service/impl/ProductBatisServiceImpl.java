@@ -141,4 +141,14 @@ public class ProductBatisServiceImpl implements ProductService {
 
 		return vo;
 	}
+	
+	public ProductVo getProductByCodeXml(String code) {
+		ProductDto dto = productMapper.findByCodeXml(code);
+		ProductVo vo = new ProductVo();
+		vo.setCode(dto.getCode());
+		vo.setName(dto.getName());
+
+		return vo;
+	}
+	
 }

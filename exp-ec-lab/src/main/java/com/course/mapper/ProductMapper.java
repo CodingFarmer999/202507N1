@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import com.course.dto.ProductDto;
@@ -41,4 +40,6 @@ public interface ProductMapper {
 	
 	@Insert("INSERT INTO PRODUCT_PRICE (ID, PRODUCT_ID, LIST_PRICE, SALES_PRICE) VALUES (PRODUCT_PRICE_SEQ.nextval, #{productId}, #{listPrice}, #{salesPrice}) ")
 	public void insertPrice(Long productId, BigDecimal listPrice, BigDecimal salesPrice);
+	
+	public ProductDto findByCodeXml(String code);
 }
