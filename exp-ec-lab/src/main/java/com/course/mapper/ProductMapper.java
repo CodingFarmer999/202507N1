@@ -45,4 +45,6 @@ public interface ProductMapper {
 	public ProductDto findByCodeXml(String code);
 	
 	public List<ProductDto> findByCondition(ProductQueryParam condition);
+	
+	public List<ProductDto> selectProductWithReviews();
 }

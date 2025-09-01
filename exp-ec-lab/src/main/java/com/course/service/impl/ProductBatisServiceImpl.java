@@ -116,8 +116,7 @@ public class ProductBatisServiceImpl implements ProductService {
 
 	@Override
 	public List<ProductDto> getAllProductData() {
-		// TODO Auto-generated method stub
-		return null;
+		return productMapper.selectProductWithReviews();
 	}
 
 	@Override
