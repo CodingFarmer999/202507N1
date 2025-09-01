@@ -6,7 +6,23 @@
 <!-- 		SELECT * FROM PRODUCT P WHERE CODE = #{CODE} -->
 <!-- 	</select> -->
 	<select id="findByCodeXml" resultType="productDto">
-		SELECT * FROM PRODUCT P WHERE CODE = #{CODE}
+		SELECT * FROM PRODUCT P 
+		<where>
+			AND CODE = #{CODE}
+		</where>
+	</select>
+	
+	<select id="findByCondition" resultType="productDto" parameterType="com.course.vo.ProductQueryParam">
+		SELECT 
+		*
+		FROM PRODUCT P
+		LEFT JOIN PRODUCT_PRICE R ON R.PRODUCT_ID = P.ID
+		<where>
+			<if test="productName != null and productName != '' ">
+				AND P.NAME = #{productName}
+			</if>
+		
+		</where>
 	</select>
 
 </mapper>
