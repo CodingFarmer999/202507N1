@@ -122,8 +122,7 @@ public class ProductBatisServiceImpl implements ProductService {
 
 	@Override
 	public List<ProductDto> getProductByCondition(ProductQueryParam queryParam) {
-		// TODO Auto-generated method stub
-		return null;
+		return productMapper.findByCondition(queryParam);
 	}
 
 	@Override
