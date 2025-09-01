@@ -31,6 +31,8 @@ public class ProductBatisServiceImpl implements ProductService {
 	@Override
 	public void addProduct(ProductVo vo) {
 		// TODO Auto-generated method stub
+		//productMapper.insertProduct(vo.getCode(), vo.getName());
+		productMapper.insertProductByVo(vo);
 		
 	}
 
