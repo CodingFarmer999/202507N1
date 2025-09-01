@@ -30,10 +30,13 @@ public interface ProductMapper {
 	@Select("SELECT * FROM PRODUCT_REVIEW V")
 	public List<ProductDto> findAllReview();
 	
+	@Select("select PRODUCT_SEQ.nextval from dual")
+	public Long getProductSeq();
+	
 	@Insert("INSERT INTO PRODUCT (ID, CODE, NAME) VALUES (PRODUCT_SEQ.nextval, #{code}, #{name}) ")
 	public void insertProduct(String code, String name);
 	
-	@Insert("INSERT INTO PRODUCT (ID, CODE, NAME) VALUES (PRODUCT_SEQ.nextval, #{code}, #{name}) ")
+	@Insert("INSERT INTO PRODUCT (ID, CODE, NAME) VALUES (#{id}, #{code}, #{name}) ")
 	public void insertProductByVo(ProductVo vo);
 	
 	@Insert("INSERT INTO PRODUCT_PRICE (ID, PRODUCT_ID, LIST_PRICE, SALES_PRICE) VALUES (PRODUCT_PRICE_SEQ.nextval, #{productId}, #{listPrice}, #{salesPrice}) ")

@@ -32,7 +32,11 @@ public class ProductBatisServiceImpl implements ProductService {
 	public void addProduct(ProductVo vo) {
 		// TODO Auto-generated method stub
 		//productMapper.insertProduct(vo.getCode(), vo.getName());
+		
+		Long productSeq = productMapper.getProductSeq();
+		vo.setId(productSeq);
 		productMapper.insertProductByVo(vo);
+		productMapper.insertPrice(vo.getId(), vo.getListPrice(), vo.getSalesPrice());
 		
 	}
 
