@@ -149,4 +149,9 @@ public class ProductBatisServiceImpl implements ProductService {
 		return vo;
 	}
 	
+	@Override
+	public void updateProductPrice(ProductVo vo) {
+		productMapper.updateProductXml(vo);
+	}
+	
 }
