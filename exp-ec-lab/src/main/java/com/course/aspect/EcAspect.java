@@ -47,7 +47,7 @@ public class EcAspect {
 		Object obj = pjp.proceed();
 		if (obj instanceof List<?>) {
 			List<?> resultList = (List<?>) obj;
-			if (resultList != null && resultList.get(0) instanceof ProductVo) {
+			if (resultList != null && resultList.size() > 0 && resultList.get(0) instanceof ProductVo) {
 				ProductVo vo = (ProductVo)resultList.get(0);
 				vo.setName(vo.getName() + "!!!!!");
 			}
