@@ -2,6 +2,10 @@ package com.course.config;
 
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.file.FlatFileItemReader;
+import org.springframework.batch.item.file.LineMapper;
+import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
+import org.springframework.batch.item.file.mapping.DefaultLineMapper;
+import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -33,6 +37,25 @@ public class CsvToDbBatchConfiguration {
 	    itemReader.setLineMapper(getLineMapper());
 
 	    return itemReader;
+	}
+	
+	private LineMapper<Person> getLineMapper() {
+	    // 針對輸入的每行資料進行處理
+
+	    DefaultLineMapper<Person> lineMapper = new DefaultLineMapper<>();
+
+	    DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
+	    lineTokenizer.setDelimiter(",");
+	    lineTokenizer.setNames("name", "gender", "city");
+
+	    // 將欄位映射到指定的物件類型
+	    BeanWrapperFieldSetMapper<Person> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
+	    fieldSetMapper.setTargetType(Person.class);
+	    
+	    // 將 LineTokenizer 和 FieldSetMapper 組合進入 LineMapper
+	    lineMapper.setLineTokenizer(lineTokenizer);
+	    lineMapper.setFieldSetMapper(fieldSetMapper);
+	    return lineMapper;
 	}
 	
 	// Processor
