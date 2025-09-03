@@ -1,5 +1,6 @@
 package com.course.config;
 
+import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.LineMapper;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
+import com.course.entity.PersonEntity;
 import com.course.model.Person;
 
 @Configuration
@@ -59,6 +61,28 @@ public class CsvToDbBatchConfiguration {
 	}
 	
 	// Processor
+	ItemProcessor<Person, PersonEntity> personProcessor(){
+		ItemProcessor processor = new ItemProcessor<>() {
+
+
+			@Override
+			public Object process(Person item) throws Exception {
+		        // 業務邏輯處理
+		        String gender = item.getGender();
+		        if (!("男".equals(gender) || "女".equals(gender))) {
+		            return null;
+		        }
+		        PersonEntity entity = new PersonEntity();
+		        entity.setName(item.getName());
+		        entity.setGender(item.getGender());
+		        entity.setCity(item.getCity());
+		        return entity;
+			}
+			
+		};
+		return processor;
+		
+	}
 	
 	// Writer
 	
