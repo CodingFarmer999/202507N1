@@ -2,21 +2,28 @@ package com.course.config;
 
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
+import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.data.RepositoryItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.LineMapper;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
 import com.course.entity.PersonEntity;
 import com.course.model.Person;
+import com.course.repository.PersonRepository;
 
 @Configuration
 public class CsvToDbBatchConfiguration {
 
+	@Autowired
+	private PersonRepository personRepository;
+	
 	// Reader
 	
 	@Bean
@@ -62,11 +69,10 @@ public class CsvToDbBatchConfiguration {
 	
 	// Processor
 	ItemProcessor<Person, PersonEntity> personProcessor(){
-		ItemProcessor processor = new ItemProcessor<>() {
-
+		ItemProcessor<Person, PersonEntity> processor = new ItemProcessor<>() {
 
 			@Override
-			public Object process(Person item) throws Exception {
+			public PersonEntity process(Person item) throws Exception {
 		        // 業務邏輯處理
 		        String gender = item.getGender();
 		        if (!("男".equals(gender) || "女".equals(gender))) {
@@ -78,13 +84,20 @@ public class CsvToDbBatchConfiguration {
 		        entity.setCity(item.getCity());
 		        return entity;
 			}
-			
 		};
 		return processor;
-		
 	}
 	
 	// Writer
+	@Bean
+	ItemWriter<PersonEntity> personWriter() {
+
+	    RepositoryItemWriter<PersonEntity> itemWriter = new RepositoryItemWriter<>();
+	    itemWriter.setRepository(personRepository);
+	    itemWriter.setMethodName("save");
+
+	    return itemWriter;
+	}
 	
 	// Step
 	
